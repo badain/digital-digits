@@ -58,14 +58,42 @@ def rot_givens(w, n, m, i, j, c, s):
 
     return w
 
+# rot_givens() overload otimizado para [1, k-1] nulo
+@overload(list, int, int, int, int, int, float, float)
+def rot_givens(w, n, m, i, j, k, c, s):
+    # verifica se os elementos de 0..(k-1) sao nulos
+    # nas linhas i e j
+    optimizable = True
+    for l in range(0, k):
+        if w[i][l] or w[j][l] != 0:
+            optimizable = False
+            break
+
+    # percorre a matrix rotacionando os elementos
+    # das linhas i e j coluna por coluna ate m
+    if optimizable:
+        for r in range(k,m):
+            aux     = c * w[i][r] - s * w[j][r]
+            w[j][r] = s * w[i][r] + c * w[j][r]
+            w[i][r] = aux
+    else:
+        for r in range(m):
+            aux     = c * w[i][r] - s * w[j][r]
+            w[j][r] = s * w[i][r] + c * w[j][r]
+            w[i][r] = aux
+    
+    return w
+
 # rot_gives() overload corrige frame dos indices
 @overload(list, int, int, int, int, int)
 def rot_givens(w, n, m, i, j, k):
+    # corrige coordenadas para 0-based numbering
     i -= 1
     j -= 1
     k -= 1
     angles = rotation_angle_for_zero(w[i][k], w[j][k])
-    w = rot_givens(w, 5, 5, i, j, k, angles["c"], angles["s"])
+    # w = rot_givens(w, 5, 5, i, j, angles["c"], angles["s"]) #unoptimized
+    w = rot_givens(w, 5, 5, i, j, k, angles["c"], angles["s"]) #optimized
     
     return w
 
@@ -77,12 +105,12 @@ w = [[ 2.,  1.,   1.,  -1.,   1.],
      [ 0.,  0.,  -1.,   1.,   2.],
      [ 0.,  0.,   0.,   3.,   1.]]
 
-print(w)
+#print(w)
 w_len = np.shape(w)
 w_givens = rot_givens(w, w_len[0], w_len[1], 3, 4, 3)
 print(w_givens)
 
-a = math.sqrt(5)
-print(3 / a)
-print(4 / a)
-print(5 / a) 
+#a = math.sqrt(5)
+#print(3 / a)
+#print(4 / a)
+#print(5 / a) 
