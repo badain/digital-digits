@@ -1,3 +1,31 @@
+import numpy as np
+import math
+
+##########################################################
+# Description: calculating  c and s based on wik and wjk
+# Dependencies: NumPy, math
+# Usage: rotation_angle_for_zero(wik, wjk)
+# 
+# Pre-Condition: wik,wjk:int
+# Post-Condition: returns a dictionary storing sine and
+#                 cossine values that make wjk = 0 when
+#                 applied in a Givens Rotation
+#
+# Author: Rafael Badain @ University of Sao Paulo
+##########################################################
+
+def rotation_angle_for_zero(wik, wjk):
+    if abs(wik) >= abs(wjk):
+        tal = (wjk / wik) * (-1)
+        c = 1 / math.sqrt(1+(tal*tal))
+        s = c * tal
+    else:
+        tal = (wik / wjk) * (-1)
+        s = 1 / math.sqrt(1+(tal*tal))
+        c = s * tal
+
+    return {'c': c, 's': s}
+
 ##########################################################
 # Description: Implements a Givens Rotation Method
 # Dependencies: NumPy
@@ -16,18 +44,3 @@
 #
 # Author: Rafael Badain @ University of Sao Paulo
 ##########################################################
-
-##########################################################
-# Description: calculating  c and s based on wik and wjk
-# Usage: rotation_sine_for_zero(wik, wjk)
-#        rotation_cossine_for_zero(wik, wjk)
-# 
-# Pre-Condition: wik,wjk:int
-# Post-Condition: returns sine and cossine values that
-#                 make wjk = 0 when applied in a Givens
-#                 Rotation
-#
-# Author: Rafael Badain @ University of Sao Paulo
-##########################################################
-
-import numpy as np
