@@ -1,5 +1,7 @@
 import numpy as np
 import math
+from multimethods import multimethod
+overload = multimethod
 
 ##########################################################
 # Description: calculating  c and s based on wik and wjk
@@ -28,6 +30,7 @@ def rotation_angle_for_zero(wik, wjk):
 
 ##########################################################
 # Description: Implements a Givens Rotation Method
+# Dependencies: math, NumPy, multimethods
 #
 # Usage: rot_givens(W,n,m,i,j,c,s)
 #        W: matrix to be rotated
@@ -44,6 +47,7 @@ def rotation_angle_for_zero(wik, wjk):
 #
 # Author: Rafael Badain @ University of Sao Paulo
 ##########################################################
+@overload(list, int, int, int, int, float, float)
 def rot_givens(w, n, m, i, j, c, s):
     # percorre a matrix rotacionando os elementos
     # das linhas i e j coluna por coluna ate m
@@ -54,6 +58,17 @@ def rot_givens(w, n, m, i, j, c, s):
 
     return w
 
+# rot_gives() overload corrige frame dos indices
+@overload(list, int, int, int, int, int)
+def rot_givens(w, n, m, i, j, k):
+    i -= 1
+    j -= 1
+    k -= 1
+    angles = rotation_angle_for_zero(w[i][k], w[j][k])
+    w = rot_givens(w, 5, 5, i, j, k, angles["c"], angles["s"])
+    
+    return w
+
 ### validation
 #   w = np.zeros((n,m)) # zero matrix
 w = [[ 2.,  1.,   1.,  -1.,   1.],
@@ -62,10 +77,9 @@ w = [[ 2.,  1.,   1.,  -1.,   1.],
      [ 0.,  0.,  -1.,   1.,   2.],
      [ 0.,  0.,   0.,   3.,   1.]]
 
-angles = rotation_angle_for_zero(w[3-1][3-1], w[4-1][3-1])
-w_givens = rot_givens(w, 5, 5, 3-1, 4-1, angles["c"], angles["s"])
-
 print(w)
+w_len = np.shape(w)
+w_givens = rot_givens(w, w_len[0], w_len[1], 3, 4, 3)
 print(w_givens)
 
 a = math.sqrt(5)
