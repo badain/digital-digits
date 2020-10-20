@@ -32,14 +32,15 @@ def rotation_angle_for_zero(wik, wjk):
 # Description: Implements a Givens Rotation Method
 # Dependencies: math, NumPy, multimethods
 #
-# Usage: rot_givens(W,n,m,i,j,c,s)
+# Usage: rot_givens(W,n,m,i,j,k)
 #        W: matrix to be rotated
 #        n: # of lines of W
-#        m: # of collumns of W
+#        m: # of columns of W
 #        i, j: plane of rotation coordinates
+#        k: column coordinate to be zero
 #        c, s: cossine and sine of rotation angle
 #
-# Pre-Condition: n,m,i,j:int
+# Pre-Condition: n,m,i,j,k:int
 #                c,s:real
 #                W(n,m): array length n of lists length m
 #
