@@ -3,7 +3,7 @@ import math
 
 ##########################################################
 # Description: calculating  c and s based on wik and wjk
-# Dependencies: NumPy, math
+# Dependencies: math
 # Usage: rotation_angle_for_zero(wik, wjk)
 # 
 # Pre-Condition: wik,wjk:int
