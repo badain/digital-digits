@@ -28,7 +28,7 @@ def rotation_angle_for_zero(wik, wjk):
 
 ##########################################################
 # Description: Implements a Givens Rotation Method
-# Dependencies: NumPy
+#
 # Usage: rot_givens(W,n,m,i,j,c,s)
 #        W: matrix to be rotated
 #        n: # of lines of W
@@ -54,22 +54,21 @@ def rot_givens(w, n, m, i, j, c, s):
 
     return w
 
-### debug
-def generate_matrix(n,m):
-    w = [[ 2.,  1.,   1.,  -1.,   1.],
-         [ 0.,  3.,   0.,   1.,   2.],
-         [ 0.,  0.,   2.,   2.,  -1.],
-         [ 0.,  0.,  -1.,   1.,   2.],
-         [ 0.,  0.,   0.,   3.,   1.]]
+### validation
 #   w = np.zeros((n,m)) # zero matrix
-    return w
+w = [[ 2.,  1.,   1.,  -1.,   1.],
+     [ 0.,  3.,   0.,   1.,   2.],
+     [ 0.,  0.,   2.,   2.,  -1.],
+     [ 0.,  0.,  -1.,   1.,   2.],
+     [ 0.,  0.,   0.,   3.,   1.]]
 
-w = generate_matrix(5,5)
-print(w)
 angles = rotation_angle_for_zero(w[3-1][3-1], w[4-1][3-1])
 w_givens = rot_givens(w, 5, 5, 3-1, 4-1, angles["c"], angles["s"])
+
+print(w)
 print(w_givens)
+
 a = math.sqrt(5)
 print(3 / a)
 print(4 / a)
-print(5 / a)
+print(5 / a) 
