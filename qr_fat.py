@@ -11,8 +11,12 @@ getcontext().prec = args.p
 #              Givens Rotation
 # Dependencies: rot_givens, NumPy, math, Decimal
 #
-# Usage: qr_factorization(w)
-#        W: two-dimensional array
+# Usage: qr_fat.py [-h] [--p [P]]
+#
+# optional arguments:
+#  -h, --help            show help message and exit
+#  --p [P], --precision [P]
+#                        precision of decimal operations
 #
 # Pre-Condition: W(n,m): array length n of lists length m
 #
