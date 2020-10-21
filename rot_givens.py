@@ -83,9 +83,9 @@ def rot_givens(w, n, m, i, j, k, c, s):
             w[i][r] = aux.normalize()
     else:
         for r in range(m):
-            aux     = c * w[i][r] - s * w[j][r]
-            w[j][r] = s * w[i][r] + c * w[j][r]
-            w[i][r] = aux
+            aux     = c * Decimal(w[i][r]) - s * Decimal(w[j][r])
+            w[j][r] = (s * Decimal(w[i][r]) + c * Decimal(w[j][r])).normalize()
+            w[i][r] = aux.normalize()
     
     return w
 
