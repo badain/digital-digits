@@ -93,8 +93,8 @@ def rot_givens(w, n, m, i, j, k):
     j -= 1
     k -= 1
     angles = rotation_angle_for_zero(w[i][k], w[j][k])
-    # w = rot_givens(w, 5, 5, i, j, angles["c"], angles["s"]) #unoptimized
-    w = rot_givens(w, 5, 5, i, j, k, angles["c"], angles["s"]) #optimized
+    # w = rot_givens(w, n, m, i, j, angles["c"], angles["s"]) #unoptimized
+    w = rot_givens(w, n, m, i, j, k, angles["c"], angles["s"]) #optimized
     
     return w
 
