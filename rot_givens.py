@@ -1,5 +1,7 @@
 import numpy as np
 import math
+import decimal
+from decimal import *
 from multimethods import multimethod
 overload = multimethod
 
@@ -17,13 +19,15 @@ overload = multimethod
 ##########################################################
 
 def rotation_angle_for_zero(wik, wjk):
+    wik = Decimal(wik)
+    wjk = Decimal(wjk)
     if abs(wik) >= abs(wjk):
         tal = (wjk / wik) * (-1)
-        c = 1 / math.sqrt(1+(tal*tal))
+        c = 1 / Decimal(1+(tal*tal)).sqrt()
         s = c * tal
     else:
         tal = (wik / wjk) * (-1)
-        s = 1 / math.sqrt(1+(tal*tal))
+        s = 1 / Decimal(1+(tal*tal)).sqrt()
         c = s * tal
 
     return {'c': c, 's': s}
@@ -48,7 +52,7 @@ def rotation_angle_for_zero(wik, wjk):
 #
 # Author: Rafael Badain @ University of Sao Paulo
 ##########################################################
-@overload(list, int, int, int, int, float, float)
+@overload(list, int, int, int, int, decimal.Decimal, decimal.Decimal)
 def rot_givens(w, n, m, i, j, c, s):
     # percorre a matrix rotacionando os elementos
     # das linhas i e j coluna por coluna ate m
@@ -60,7 +64,7 @@ def rot_givens(w, n, m, i, j, c, s):
     return w
 
 # rot_givens() overload otimizado para [1, k-1] nulo
-@overload(list, int, int, int, int, int, float, float)
+@overload(list, int, int, int, int, int, decimal.Decimal, decimal.Decimal)
 def rot_givens(w, n, m, i, j, k, c, s):
     # verifica se os elementos de 0..(k-1) sao nulos
     # nas linhas i e j
@@ -74,9 +78,9 @@ def rot_givens(w, n, m, i, j, k, c, s):
     # das linhas i e j coluna por coluna ate m
     if optimizable:
         for r in range(k,m):
-            aux     = c * w[i][r] - s * w[j][r]
-            w[j][r] = s * w[i][r] + c * w[j][r]
-            w[i][r] = aux
+            aux     = c * Decimal(w[i][r]) - s * Decimal(w[j][r])
+            w[j][r] = (s * Decimal(w[i][r]) + c * Decimal(w[j][r])).normalize()
+            w[i][r] = aux.normalize()
     else:
         for r in range(m):
             aux     = c * w[i][r] - s * w[j][r]
