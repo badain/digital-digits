@@ -1,4 +1,10 @@
+import argparse
 from rot_givens import *
+
+parser = argparse.ArgumentParser(description='Implements matrix QR Factorization based on Givens Rotation.')
+parser.add_argument('--p', '--precision', type=int, nargs='?', const=28, default=28, help='precision of decimal operations', required=False)
+args = parser.parse_args()
+getcontext().prec = args.p
 
 ##########################################################
 # Description: Implements matrix QR Factorization based on
