@@ -6,16 +6,10 @@ import numpy as np
 #              Givens Rotation
 # Dependencies: NumPy, rot_givens
 #
-# Usage: qr_factorization(w,n,m,i,j,k)
+# Usage: qr_factorization(w)
 #        W: two-dimensional array
-#        n: # of lines of W
-#        m: # of columns of W
-#        i, j: plane of rotation coordinates
-#        k: column coordinate to be zero
-#        c, s: cossine and sine of rotation angle
 #
-# Pre-Condition: n,m:int
-#                W(n,m): array length n of lists length m
+# Pre-Condition: W(n,m): array length n of lists length m
 #
 # Post-Condition: Returns the decomposition of a matrix
 #                 as a upper triangular matrix R
