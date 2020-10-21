@@ -1,5 +1,4 @@
-from rot_givens import rot_givens
-import numpy as np
+from rot_givens import *
 
 ##########################################################
 # Description: Implements matrix QR Factorization based on
