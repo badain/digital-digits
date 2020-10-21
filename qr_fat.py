@@ -17,7 +17,6 @@ import numpy as np
 # Author: Rafael Badain @ University of Sao Paulo
 ##########################################################
 
-
 def qr_factorization(w):
     # obtains matrix size
     w_len = np.shape(w)
