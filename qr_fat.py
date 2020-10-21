@@ -3,7 +3,7 @@ from rot_givens import *
 ##########################################################
 # Description: Implements matrix QR Factorization based on
 #              Givens Rotation
-# Dependencies: NumPy, rot_givens
+# Dependencies: rot_givens, NumPy, math, Decimal
 #
 # Usage: qr_factorization(w)
 #        W: two-dimensional array
