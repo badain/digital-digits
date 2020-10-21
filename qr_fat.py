@@ -23,14 +23,13 @@ def qr_factorization(w):
     w_len = np.shape(w)
     n = w_len[0]
     m = w_len[1]
-    c = 0
+    
     for k in range(m):
         for j in range((n-1), k, -1):
             i = j - 1
             if w[j][k] != 0:
                 w = rot_givens(w, n, m, i+1, j+1, k+1)
-                c += 1
-        
+    
     return w
 
 ### validation
