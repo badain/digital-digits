@@ -100,16 +100,16 @@ def rot_givens(w, n, m, i, j, k):
 
 ### validation
 #   w = np.zeros((n,m)) # zero matrix
-w = [[ 2.,  1.,   1.,  -1.,   1.],
-     [ 0.,  3.,   0.,   1.,   2.],
-     [ 0.,  0.,   2.,   2.,  -1.],
-     [ 0.,  0.,  -1.,   1.,   2.],
-     [ 0.,  0.,   0.,   3.,   1.]]
+#w = [[ 2.,  1.,   1.,  -1.,   1.],
+#     [ 0.,  3.,   0.,   1.,   2.],
+#     [ 0.,  0.,   2.,   2.,  -1.],
+#     [ 0.,  0.,  -1.,   1.,   2.],
+#     [ 0.,  0.,   0.,   3.,   1.]]
 
 #print(w)
-w_len = np.shape(w)
-w_givens = rot_givens(w, w_len[0], w_len[1], 3, 4, 3)
-print(w_givens)
+#w_len = np.shape(w)
+#w_givens = rot_givens(w, w_len[0], w_len[1], 3, 4, 3)
+#print(w_givens)
 
 #a = math.sqrt(5)
 #print(3 / a)
