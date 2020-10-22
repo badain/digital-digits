@@ -17,13 +17,15 @@ getcontext().prec = args.p
 #              Givens Rotation
 # Dependencies: rot_givens, NumPy, math, Decimal
 #
-# Usage: qr_fat.py [-h] [--p [P]]
+# Usage: qr_fat.py [-h] [--p [P]] [--r [R]](--r <= --p)
 #
 # optional arguments:
 #  -h, --help            show help message and exit
 #  --p [P], --precision [P]
 #                        precision of decimal operations
-#
+#  --r [R], --representation [R]
+#                        precision of decimal representation
+#                        --r must be <= --p
 # Pre-Condition: W(n,m): array length n of lists length m
 #
 # Post-Condition: Returns the decomposition of a matrix
