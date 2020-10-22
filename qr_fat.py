@@ -48,9 +48,6 @@ def qr_factorization(w):
             i = j - 1                                   # se o elemento é != aplica rot_givens
             if w[j][k] != 0:
                 w = rot_givens(w, n, m, i+1, j+1, k+1)  # desloca os indices para inicio em 1
-
-    if args.r is not None and args.r != args.p:
-        return matrix_representation_round(w, args.r)
         
     return w
 
@@ -72,5 +69,10 @@ w = [[ 2.,  1.,   1.,  -1.,   1.],
      [ 0.,  0.,   2.,   2.,  -1.],
      [ 0.,  0.,  -1.,   1.,   2.],
      [ 0.,  0.,   0.,   3.,   1.]]
-r = qr_factorization(w)
-if(args.e): print(r)
+w_decomposed = qr_factorization(w)
+
+# Optional rounding step
+if args.r is not None and args.r != args.p:
+    w_decomposed = matrix_representation_round(w_decomposed, args.r)
+# Optional printing step
+if(args.e): print(w_decomposed)
