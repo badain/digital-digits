@@ -4,11 +4,11 @@ from rot_givens import *
 
 parser = argparse.ArgumentParser(description='Implements matrix QR Factorization based on Givens Rotation.')
 parser.add_argument('--p', '--precision', type=int, nargs='?', const=28, default=28, help='precision of decimal operations', required=False)
-parser.add_argument('--r', '--representation', type=int, nargs='?', const=16, default=16, help='precision of decimal representation', required=False)
+parser.add_argument('--r', '--rounding', type=int, nargs='?', const=16, default=16, help='precision of result rounding', required=False)
 args = parser.parse_args()
 if args.r > args.p:
     print("usage: qr_fat.py [-h] [--p [P]] [--r [R]](--r <= --p)")
-    print("qr_fat.py: error: argument --r/--representation: --r must be <= --p")
+    print("qr_fat.py: error: argument --r/--rounding: --r must be <= --p")
     sys.exit(1)
 getcontext().prec = args.p
 
@@ -23,8 +23,8 @@ getcontext().prec = args.p
 #  -h, --help            show help message and exit
 #  --p [P], --precision [P]
 #                        precision of decimal operations
-#  --r [R], --representation [R]
-#                        precision of decimal representation
+#  --r [R], --rounding [R]
+#                        precision of result rounding
 #                        --r must be <= --p
 # Pre-Condition: W(n,m): array length n of lists length m
 #
