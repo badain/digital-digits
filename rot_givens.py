@@ -82,9 +82,9 @@ def rot_givens(w, n, m, i, j, k, c, s):
         column_range = range(m)
 
     for r in column_range:
-            aux     = c * Decimal(w[i][r]) - s * Decimal(w[j][r])
+            aux     = (c * Decimal(w[i][r]) - s * Decimal(w[j][r])).normalize()
             w[j][r] = (s * Decimal(w[i][r]) + c * Decimal(w[j][r])).normalize()
-            w[i][r] = aux.normalize()
+            w[i][r] = aux
 
     return w
 
