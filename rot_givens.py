@@ -69,7 +69,7 @@ def rot_givens(w, n, m, i, j, k, c, s):
     # verifica se os elementos de 0..(k-1) sao nulos
     # nas linhas i e j
     optimizable = True
-    for l in range(0, k):
+    for l in range(0, k):             # nao roda para k=0 pois nao existe elementos a esquerda
         if w[i][l] or w[j][l] != 0:
             optimizable = False
             break
