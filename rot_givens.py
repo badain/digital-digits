@@ -77,16 +77,15 @@ def rot_givens(w, n, m, i, j, k, c, s):
     # percorre a matrix rotacionando os elementos
     # das linhas i e j coluna por coluna ate m
     if optimizable:
-        for r in range(k,m):
-            aux     = c * Decimal(w[i][r]) - s * Decimal(w[j][r])
-            w[j][r] = (s * Decimal(w[i][r]) + c * Decimal(w[j][r])).normalize()
-            w[i][r] = aux.normalize()
+        column_range = range(k,m)
     else:
-        for r in range(m):
+        column_range = range(m)
+
+    for r in column_range:
             aux     = c * Decimal(w[i][r]) - s * Decimal(w[j][r])
             w[j][r] = (s * Decimal(w[i][r]) + c * Decimal(w[j][r])).normalize()
             w[i][r] = aux.normalize()
-    
+
     return w
 
 # rot_gives() overload corrige frame dos indices
