@@ -106,3 +106,12 @@ def main():
 
     return
 main()
+
+# problemas:
+## transformar array b 1D em 2D
+## rotação de Givens deve já receber o seno e o cosseno --> da bug na matriz das constantes
+## math.sqrt()
+## coisas utilizadas na função da rotação de Givens (normalize, overload, decimal, ...) são realmente necessárias?
+## i+1, j+1 como argumentos de rot_givens(), está correto?
+## |w[i][k]| != 0 na fatoração QR, está correto?
+## nome da função rot_givens() (acho que o problema foi com o meu computador)
