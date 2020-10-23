@@ -105,3 +105,4 @@ def main():
     hd = multiple_sistem(wd, Ad)
 
     return
+main()
