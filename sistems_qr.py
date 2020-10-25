@@ -23,7 +23,7 @@ def single_sistem(w, b):
         for j in range((k + 1), m):
             S += w[k][j] * x[j]
         x[k] = (b[k] - S) / w[k][k]
-    return x;
+    return x
 
 
 # simultaneous sistems solution: WH = A --> finds the H matrix
