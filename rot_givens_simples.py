@@ -1,3 +1,4 @@
+# não otimizado com decimal
 import numpy as np
 import math
 from multimethods import multimethod
