@@ -1,5 +1,4 @@
-import numpy as np
-from rot_givens import *
+from rot_givens_simples import *
 # single sistem solution
 def single_sistem(w, b):
     # w: n x m coefficients matrix
@@ -11,25 +10,26 @@ def single_sistem(w, b):
     for k in range(m):  # percorre horizontalmente
         for j in range((n - 1), k, -1):  # percorre verticalmente, de baixo para cima
             i = j - 1  # se o elemento é != aplica rot_givens
-            if w[j][k] != 0:  # possível problem
-                w = rot_givens(w, n, m, i + 1, j + 1, k + 1)  # desloca os indices para inicio em 1
-                b = rot_givens(b, n, 1, i + 1, j + 1, k + 1)  # do the same with de constant term matrix
+            if abs(w[j][k]) > pow(10, -8):  # intervalo de erro
+                angles = rotation_angle_for_zero(w[i][k], w[j][k])
+                w = rot_givens(w, m, i, j, k, angles["c"], angles["s"])
+                b = rot_givens(b, 1, i, j, k, angles["c"], angles["s"])
 
     # x: solution vector
     x = np.zeros(m)
-    x[m - 1] = b[m - 1] / w[m - 1][m - 1]
+    x[m - 1] = b[m - 1][0] / w[m - 1][m - 1]
     for k in range((m - 2), -1, -1):  # back substitution
         S = 0
         for j in range((k + 1), m):
             S += w[k][j] * x[j]
-        x[k] = (b[k] - S) / w[k][k]
-    return x
+        x[k] = (b[k][0] - S) / w[k][k]
+    return x;
 
 
 # simultaneous sistems solution: WH = A --> finds the H matrix
 def multiple_sistem(w, A):
-    # w: n x m coefficients matrix
-    # b: n x 1 constant terms matrix
+    # w: n x p coefficients matrix
+    # A: n x m constant terms matrix
     w_len = np.shape(w)
     A_len = np.shape(A)
     m = A_len[1]
@@ -39,9 +39,10 @@ def multiple_sistem(w, A):
     for k in range(p):  # percorre horizontalmente
         for j in range((n - 1), k, -1):  # percorre verticalmente, de baixo para cima
             i = j - 1  # se o elemento é != aplica rot_givens
-            if w[j][k] != 0:  # possível problem
-                w = rot_givens(w, n, p, i + 1, j + 1, k + 1)  # desloca os indices para inicio em 1
-                A = rot_givens(A, n, m, i + 1, j + 1, k + 1)  # do the same with de constant term matrix
+            if abs(w[j][k]) > pow(10, -8):  # possível problem
+                angles = rotation_angle_for_zero(w[i][k], w[j][k])
+                w = rot_givens(w, p, i, j, k, angles["c"], angles["s"])
+                A = rot_givens(A, m, i, j, k, angles["c"], angles["s"])
 
     # H solution matrix
     H = np.zeros((p,m))
@@ -60,14 +61,14 @@ def multiple_sistem(w, A):
 
 def create_A_matrix(n, m):  # create the A matrix for examples c and d
     A = np.zeros((n,m))
-    for j in range(3):
-        for i in range(64):
+    for j in range(m):
+        for i in range(n):
             if (j == 0):
                 A[i][j] = 1
             elif (j == 1):
                 A[i][j] = i + 1
             else:
-                A[i][j] = 2 * (i + 1) + 1
+                A[i][j] = 2 * (i + 1) - 1
     return A
 
 
@@ -81,20 +82,20 @@ def main():
                 wa[i][j] = 2
             elif (abs(i - j) == 1):
                 wa[i][j] = 1
-    ba = np.ones(64)
-    wc = wa  # useful copy for example c
+    ba = np.ones((64, 1))
+    wc = wa.copy()  # useful copy for example c
     xa = single_sistem(wa, ba)
 
     # b) Single sistem Wx = b: n = 20, m = 17; W = wb, b = bb
     wb = np.zeros((20,17))
-    bb = np.zeros(20)
+    bb = np.zeros((20,1))
     for i in range(20):
         bb[i] = i + 1
         for j in range(17):
             if (abs(i - j) <= 4):
                 wb[i][j] = 1 / (i + j + 1)
-
-    wd = wb  # useful copy for example d
+    wd = wb.copy()  # useful copy for example d
+    xb = single_sistem(wb, bb)
 
     # c) Multiple sistems WH = A; n = p = 63, m = 3, W = wc, A = Ac
     Ac = create_A_matrix(64, 3)
@@ -104,14 +105,13 @@ def main():
     Ad = create_A_matrix(20, 3)
     hd = multiple_sistem(wd, Ad)
 
+    print(xa)
+    print()
+    print(xb)
+    print()
+    print(hc)
+    print()
+    print(hd)
+
     return
 main()
-
-# problemas:
-## transformar array b 1D em 2D
-## rotação de Givens deve já receber o seno e o cosseno --> da bug na matriz das constantes
-## math.sqrt()
-## coisas utilizadas na função da rotação de Givens (normalize, overload, decimal, ...) são realmente necessárias?
-## i+1, j+1 como argumentos de rot_givens(), está correto?
-## |w[i][k]| != 0 na fatoração QR, está correto?
-## nome da função rot_givens() (acho que o problema foi com o meu computador)
