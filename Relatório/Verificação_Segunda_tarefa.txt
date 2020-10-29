@@ -1,0 +1,19 @@
+Verificação do funcionamento do programa para o exemplo dado no enunciado:
+
+Seguem os resultados:
+----------------------
+O resultado convergiu?
+Sim! foram necessárias 6 iterações para a convergência
+
+Matriz W:
+[[2.57874093e-05 6.00025787e-01]
+ [9.99999970e-01 1.00000000e-08]
+ [3.43832124e-05 8.00034382e-01]]
+
+Matriz H:
+[[5.00000012e-01 1.00000000e-08 1.00000003e+00]
+ [4.99871049e-01 1.00000000e+00 1.00000000e-08]]
+
+Norma do erro para cada iteração:
+[5.59558134e-01 1.63258782e-02 5.04468569e-04 1.43091537e-05
+ 3.98905818e-07 1.10873813e-08]
