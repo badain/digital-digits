@@ -44,13 +44,10 @@ def rot_givens(w, m, i, j, k, c, s):
     # percorre a matrix rotacionando os elementos
     # das linhas i e j coluna por coluna ate m
     if optimizable:
-        column_range = range(k, m)
+        r = k
     else:
-        column_range = range(m)
+        r = 0
 
-    for r in column_range:
-        aux = c * w[i][r] - s * w[j][r]
-        w[j][r] = s * w[i][r] + c * w[j][r]
-        w[i][r] = aux
+    w[i, r:m], w[j, r:m] = c * w[i][r:m] - s * w[j][r:m], s * w[i][r:m] + c * w[j][r:m]
 
     return w
