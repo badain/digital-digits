@@ -24,7 +24,7 @@ from fatorização_nao_negativa import*
 ## Decompoe A = Wd*H por fatoracao nao negativa
 def treino(ndig_treino, p, d):
     convergencia = [False, 100] # pode mudar
-    a = np.loadtxt("dados_mnist/train_dig" + str(d) + ".txt", usecols=range(ndig_treino))
+    a = np.loadtxt("dados_mnist/train_dig" + str(d) + ".txt", usecols=range(ndig_treino)) / 255
     decomp = nao_negativa(a, p, convergencia)
     return decomp[0] # é a matriz Wd
 
@@ -47,8 +47,7 @@ if(args.t):
         wd = treino(args.ndig_treino, args.p, d)
         elapsed_time = time.time() - start
         t.write("d" + str(d) + ": " + str(elapsed_time) + "\n")
-        output = "output/W_" + str(d) + "_" + str(args.ndig_treino) + "_" + str(args.p) + ".txt"
-        with open(output, "w") as f: np.savetxt(f, wd) # problema: muitas casas decimais
+        np.savetxt("output/W_" + str(d) + "_" + str(args.ndig_treino) + "_" + str(args.p) + ".txt", wd, fmt='%f')
     elapsed_total = time.time() - start_total
     t.write("total: " + str(elapsed_total))
     t.close()
@@ -57,5 +56,4 @@ else:
     # Gera a matriz wd para cada digito
     for d in range(10):
         wd = treino(args.ndig_treino, args.p, d)
-        output = "output/W_" + str(d) + "_" + str(args.ndig_treino) + "_" + str(args.p) + ".txt"
-        with open(output, "w") as f: np.savetxt(f, wd) # problema: muitas casas decimais
+        np.savetxt("output/W_" + str(d) + "_" + str(args.ndig_treino) + "_" + str(args.p) + ".txt", wd, fmt='%f')
