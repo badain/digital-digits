@@ -43,9 +43,10 @@ for d in range(10): #digitos
     h = multiple_sistem(w, a)
     wh = np.matmul(w, h)
     err = np.subtract(a, wh) # A - WH
-    if(args.d): print(str(d)+": "+str(err.shape))
+    if(args.d):
+        print(str(d)+": "+str(err.shape))
     for j in range(err.shape[1]): #imagens
-        e_j = np.linalg.norm(err[:, j]) # calculo da norma
+        e_j = np.linalg.norm(err[:, j]) # calculo da norma PROVAVELMENTE ERRADO
         if(d == 0 or e_j < classification_err[j]):
             classification[j] = d
             classification_err[j] = e_j
