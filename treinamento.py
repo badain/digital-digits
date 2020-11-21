@@ -37,7 +37,7 @@ args = parser.parse_args()
 
 # Grava o tempo despendido no treinamento para cada digito
 if(args.t):
-    t = open("train_times.txt", "w")
+    t = open("output/train_times.txt", "w")
     t.write("Tempos para o treinamento de cada digito (em s):\n")
 
     # Gera a matriz wd para cada digito
@@ -47,7 +47,7 @@ if(args.t):
         wd = treino(args.ndig_treino, args.p, d)
         elapsed_time = time.time() - start
         t.write("d" + str(d) + ": " + str(elapsed_time) + "\n")
-        output = "W_" + str(d) + "_" + str(args.ndig_treino) + "_" + str(args.p) + ".txt"
+        output = "output/W_" + str(d) + "_" + str(args.ndig_treino) + "_" + str(args.p) + ".txt"
         with open(output, "w") as f: np.savetxt(f, wd) # problema: muitas casas decimais
     elapsed_total = time.time() - start_total
     t.write("total: " + str(elapsed_total))
