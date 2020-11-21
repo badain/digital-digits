@@ -32,25 +32,33 @@ args = parser.parse_args()
 
 # Input Reading
 a = np.loadtxt("dados_mnist/test_images.txt", usecols=range(args.n_test)) / 255
-if(args.d): print(a.shape)
+if(args.d): print("Loaded: dados_mnist/test_images.txt "+str(a.shape))
 
 # For each image, Wd*H = A
 classification  = np.zeros(args.n_test)
 classification_err = np.zeros(args.n_test)
 
-for d in range(10): #digitos
-    w = np.loadtxt("output/W_"+str(d)+"_"+str(args.n_test)+"_"+str(args.p)+".txt")
-    h = multiple_sistem(w, a)
+for digit in range(10): #digitos
+    # Solving A - WH
+    w = np.loadtxt("output/W_"+str(digit)+"_"+str(args.n_test)+"_"+str(args.p)+".txt")
+    w_sistem = w.copy()
+    h = multiple_sistem(w_sistem, a)
     wh = np.matmul(w, h)
     err = np.subtract(a, wh) # A - WH
-    if(args.d): print(str(d)+": "+str(err.shape))
+
+    if(args.d):
+        print("["+str(digit)+"]")
+        print("Loaded: output/W_"+str(digit)+"_"+str(args.n_test)+"_"+str(args.p)+".txt "+str(w.shape))
+        print("h: "+str(h.shape)+" wh: "+str(wh.shape)+" a-wh: "+str(err.shape))
+
     for j in range(err.shape[1]): #imagens
         e_j = np.sqrt((np.sum(pow(err[:,j],2))))
-        if(d == 0 or e_j < classification_err[j]):
-            classification[j] = d
+        if(digit == 0 or e_j < classification_err[j]):
+            classification[j] = digit
             classification_err[j] = e_j
-        if(args.d): print(str(j)+": "+str(e_j))
+    #    if(args.d): print(str(j)+": "+str(e_j))
+    
     if(args.d):
-        print(classification_err)
+    #    print(classification_err)
         print(classification)
     
