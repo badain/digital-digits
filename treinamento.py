@@ -1,5 +1,28 @@
-from fatorização_nao_negativa import*
+#####################################################################
+# Description: treinamento baseado em fatoracao nao negativa
+#              para classificacao de digitos manuscritos utilizando
+#              a database MNIST
+# Dependencies: time
+# Usage: training_MNIST.py ndig_treino
+# 
+# Pre-Condition: wik,wjk:real
+# Post-Condition: returns a dictionary storing sine and
+#                 cossine values that make wjk = 0 when
+#                 applied in a Givens Rotation
+#
+# Authors: Carlo Bellinati & Rafael Badain @ University of Sao Paulo
+#####################################################################
+
+# Dependencies
+import argparse
 import time
+from fatorização_nao_negativa import*
+
+# Argument Parsing
+parser = argparse.ArgumentParser(description='Decompoe um conjunto de imagens em classificadores, baseado na fatoracao nao negativa')
+parser.add_argument('ndig_treino', type=int, metavar='ndig_treino', help='numero de imagens a ser utilizada para fatoracao')
+#parser.add_argument('--d', '--debug', default=False, action='store_true', help='debug mode',)
+args = parser.parse_args()
 
 ## fazer a decomposição Wd*H = A
 def treino(ndig_treino, p, d):
@@ -28,4 +51,3 @@ def main():
             np.savetxt(f, Wd) # problema: muitas casas decimai
     t.close()
 main()
-
