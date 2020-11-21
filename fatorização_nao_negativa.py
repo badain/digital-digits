@@ -81,7 +81,7 @@ def main():
     print(decomposicao[2][:convergencia[1]])
     return
 
-teste = True
+teste = False
 if(teste):
     main()
 
