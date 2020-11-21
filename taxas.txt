@@ -1,0 +1,9 @@
+C:\Users\rafab\Documents\GitHub\master\machine-eyes> python .\classify_MNIST.py 4000 10000 15 --d
+Loaded: dados_mnist/test_images.txt (784, 10000)
+{'acerto': 1478, 'erro': 8522}
+PS C:\Users\rafab\Documents\GitHub\master\machine-eyes> python .\classify_MNIST.py 1000 10000 15 --d
+Loaded: dados_mnist/test_images.txt (784, 10000)
+{'acerto': 1634, 'erro': 8366}
+PS C:\Users\rafab\Documents\GitHub\master\machine-eyes> python .\classify_MNIST.py 100 10000 15 --d
+Loaded: dados_mnist/test_images.txt (784, 10000)
+{'acerto': 1362, 'erro': 8638}
