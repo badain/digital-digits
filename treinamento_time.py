@@ -43,7 +43,7 @@ for ndig_treino in ndig:
             wd = treino(ndig_treino, p, d)
             elapsed_time = time.time() - start
             t.write("d" + str(d) + ": " + str(elapsed_time) + "\n")
-            np.savetxt("output/W_" + str(d) + "_" + str(ndig_treino) + "_" + str(p) + ".txt", wd, fmt='%f')
+            np.savetxt("output/W_" + str(d) + "_" + str(ndig_treino) + "_" + str(p) + ".txt", wd)
         elapsed_total = time.time() - start_total
         t.write("total: " + str(elapsed_total))
         t.close()
