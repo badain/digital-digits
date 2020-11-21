@@ -35,7 +35,22 @@ a = np.loadtxt("dados_mnist/test_images.txt", usecols=range(args.n_test))
 if(args.d): print(a.shape)
 
 # For each image, Wd*H = A
-for d in range(10):
+classification  = np.zeros(args.n_test)
+classification_err = np.zeros(args.n_test)
+
+for d in range(10): #digitos
     w = np.loadtxt("output/W_"+str(d)+"_"+str(args.n_test)+"_"+str(args.p)+".txt", usecols=range(args.n_test))
     h = multiple_sistem(w, a)
-    if(args.d): print(str(d)+": "+str(h.shape))
+    wh = np.matmul(w, h)
+    err = np.subtract(a, wh) # A - WH
+    if(args.d): print(str(d)+": "+str(err.shape))
+    for j in range(err.shape[1]): #imagens
+        e_j = np.linalg.norm(err[:, j]) # calculo da norma
+        if(d == 0 or e_j < classification_err[j]):
+            classification[j] = d
+            classification_err[j] = e_j
+        if(args.d): print(str(j)+": "+str(e_j))
+    if(args.d):
+        print(classification_err)
+        print(classification)
+    
