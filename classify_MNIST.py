@@ -46,7 +46,7 @@ for d in range(10): #digitos
     if(args.d):
         print(str(d)+": "+str(err.shape))
     for j in range(err.shape[1]): #imagens
-        e_j = math.sqrt((np.sum(pow(err[:,j],2)))
+        e_j = math.sqrt(np.sum(pow(err[:,j],2)))
         #e_j = np.linalg.norm(err[:, j]) # calculo da norma PROVAVELMENTE ERRADO
         if(d == 0 or e_j < classification_err[j]):
             classification[j] = d
