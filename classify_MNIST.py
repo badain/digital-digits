@@ -42,11 +42,13 @@ classification_err = np.zeros(args.n_test)
 for digit in range(10): #digitos
     # Solving A - WH
     w = np.loadtxt("output/W_"+str(digit)+"_"+str(args.ndig_treino)+"_"+str(args.p)+".txt")
+    if(args.d): print("Loaded: output/W_"+str(digit)+"_"+str(args.ndig_treino)+"_"+str(args.p)+".txt"+str(a.shape))
     w_sistem = w.copy()
     h = multiple_sistem(w_sistem, a)
     wh = np.matmul(w, h)
     err = np.subtract(a, wh) # A - WH
 
+    # Classification
     for j in range(err.shape[1]): #imagens
         e_j = np.sqrt((np.sum(pow(err[:,j],2))))
         if(digit == 0 or e_j < classification_err[j]):
@@ -64,5 +66,5 @@ for c in range(len(classification)):
 print(taxa)
 
 if(args.d):
-    t = open("output/C_" + str(args.n_test) + "_" + str(args.p) + ".txt", "w")
+    t = open("output/C_" + str(args.ndig_treino) + "_" + str(args.n_test) + "_" + str(args.p) + ".txt", "w")
     for i in classification: t.write(str(int(i))+"\n")
