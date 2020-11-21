@@ -21,7 +21,6 @@ import numpy as np
 import argparse
 import time
 from sistems_qr import multiple_sistem
-import collections
 
 # Argument Parsing
 parser = argparse.ArgumentParser(description='Decompoe um conjunto de imagens em classificadores, baseado na fatoracao nao negativa')
