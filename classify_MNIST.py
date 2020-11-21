@@ -31,7 +31,7 @@ parser.add_argument('--t', '--times', default=False, action='store_true', help='
 args = parser.parse_args()
 
 # Input Reading
-a = np.loadtxt("dados_mnist/test_images.txt", usecols=range(args.n_test)) / 250
+a = np.loadtxt("dados_mnist/test_images.txt", usecols=range(args.n_test)) / 255
 if(args.d): print(a.shape)
 
 # For each image, Wd*H = A
@@ -39,15 +39,13 @@ classification  = np.zeros(args.n_test)
 classification_err = np.zeros(args.n_test)
 
 for d in range(10): #digitos
-    w = np.loadtxt("output/W_"+str(d)+"_"+str(args.n_test)+"_"+str(args.p)+".txt", usecols=range(args.n_test))
+    w = np.loadtxt("output/W_"+str(d)+"_"+str(args.n_test)+"_"+str(args.p)+".txt")
     h = multiple_sistem(w, a)
     wh = np.matmul(w, h)
     err = np.subtract(a, wh) # A - WH
-    if(args.d):
-        print(str(d)+": "+str(err.shape))
+    if(args.d): print(str(d)+": "+str(err.shape))
     for j in range(err.shape[1]): #imagens
         e_j = np.sqrt((np.sum(pow(err[:,j],2))))
-        #e_j = np.linalg.norm(err[:, j]) # calculo da norma PROVAVELMENTE ERRADO
         if(d == 0 or e_j < classification_err[j]):
             classification[j] = d
             classification_err[j] = e_j
