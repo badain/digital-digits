@@ -24,9 +24,9 @@ from fatorização_nao_negativa import*
 ## Decompoe A = Wd*H por fatoracao nao negativa
 def treino(ndig_treino, p, d):
     convergencia = [False, 100] # pode mudar
-    a = np.loadtxt("dados_mnist/train_dig" + str(d) + ".txt", usecols=range(ndig_treino)) / 255
-    decomp = nao_negativa(a, p, convergencia)
-    return decomp[0] # é a matriz Wd
+    a = np.loadtxt("dados_mnist/train_dig" + str(d) + ".txt", usecols=range(ndig_treino)) / 255 # normaliza por 255
+    decomposition = nao_negativa(a, p, convergencia)
+    return decomposition[0] # WD = [0]; H = [1]; err = [2]
 
 # Argument Parsing
 parser = argparse.ArgumentParser(description='Decompoe um conjunto de imagens em classificadores, baseado na fatoracao nao negativa')
@@ -44,10 +44,10 @@ if(args.t):
     start_total = time.time()
     for d in range(10):
         start = time.time()
-        wd = treino(args.ndig_treino, args.p, d)
+        wd = treino(args.ndig_treino, args.p, d) # Treinamento = Decomposicao por Fatoracao Nao Negativa
         elapsed_time = time.time() - start
         t.write("d" + str(d) + ": " + str(elapsed_time) + "\n")
-        np.savetxt("output/W_" + str(d) + "_" + str(args.ndig_treino) + "_" + str(args.p) + ".txt", wd, fmt='%f')
+        np.savetxt("output/W_" + str(d) + "_" + str(args.ndig_treino) + "_" + str(args.p) + ".txt", wd, fmt='%f') # Grava decomposicao
     elapsed_total = time.time() - start_total
     t.write("total: " + str(elapsed_total))
     t.close()
@@ -55,5 +55,5 @@ if(args.t):
 else:
     # Gera a matriz wd para cada digito
     for d in range(10):
-        wd = treino(args.ndig_treino, args.p, d)
-        np.savetxt("output/W_" + str(d) + "_" + str(args.ndig_treino) + "_" + str(args.p) + ".txt", wd, fmt='%f')
+        wd = treino(args.ndig_treino, args.p, d) # Treinamento = Decomposicao por Fatoracao Nao Negativa
+        np.savetxt("output/W_" + str(d) + "_" + str(args.ndig_treino) + "_" + str(args.p) + ".txt", wd, fmt='%f') # Grava decomposicao
