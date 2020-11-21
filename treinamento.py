@@ -4,11 +4,14 @@
 #              a database MNIST
 # Dependencies: time, argparse, fatorização_nao_negativa
 # Usage: training_MNIST.py ndig_treino p --t
-# 
-# Pre-Condition: wik,wjk:real
-# Post-Condition: returns a dictionary storing sine and
-#                 cossine values that make wjk = 0 when
-#                 applied in a Givens Rotation
+# Positional arguments:
+#     ndig_treino   numero de imagens a ser utilizada para fatoracao
+#     P             fator de componentes da decomposicao
+# Optional arguments:
+#     -h, --help    shows help message and exit
+#     --t, --times  guarda o tempo de treinamento para cada digito
+# Post-Condition: armazena as matrizes Wd decompostas para cada
+#                 digito
 #
 # Authors: Carlo Bellinati & Rafael Badain @ University of Sao Paulo
 #####################################################################
@@ -21,8 +24,8 @@ from fatorização_nao_negativa import*
 ## Decompoe A = Wd*H por fatoracao nao negativa
 def treino(ndig_treino, p, d):
     convergencia = [False, 100] # pode mudar
-    a = np.loadtxt("dados_mnist/train_dig" + str(d) + ".txt")
-    decomp = nao_negativa(a[:,:ndig_treino], p, convergencia)
+    a = np.loadtxt("dados_mnist/train_dig" + str(d) + ".txt", usecols=range(ndig_treino))
+    decomp = nao_negativa(a, p, convergencia)
     return decomp[0] # é a matriz Wd
 
 # Argument Parsing
@@ -54,5 +57,5 @@ else:
     # Gera a matriz wd para cada digito
     for d in range(10):
         wd = treino(args.ndig_treino, args.p, d)
-        output = "W_" + str(d) + "_" + str(args.ndig_treino) + "_" + str(args.p) + ".txt"
+        output = "output/W_" + str(d) + "_" + str(args.ndig_treino) + "_" + str(args.p) + ".txt"
         with open(output, "w") as f: np.savetxt(f, wd) # problema: muitas casas decimais
