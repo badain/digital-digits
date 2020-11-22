@@ -1,35 +1,52 @@
 from rot_givens import *
-# single system solution
+######################################################################
+# Description: single system solution wx = b based on QR Factorization
+# Usage: single_system(w, b)
+# 
+# Pre-Condition:  w: n x m matrix,
+#                 b: n x 1 matrix
+# Post-Condition: returns x satisfying wx = b
+#
+# Authors: Carlo Bellinati & Rafael Badain @ University of Sao Paulo
+######################################################################
 def single_system(w, b):
-    # w: n x m coefficients matrix
-    # b: n x 1 constant terms matrix 
-    w_len = np.shape(w)
-    n = w_len[0]
-    m = w_len[1]
+    # Matrix Shape
+    n = w.shape[0]
+    m = w.shape[1]
+
     # QR factorization
-    for k in range(m):  # percorre horizontalmente
-        for j in range((n - 1), k, -1):  # percorre verticalmente, de baixo para cima
-            i = j - 1  # se o elemento é != aplica rot_givens
-            if abs(w[j][k]) > pow(10, -8):  # intervalo de erro
+    for k in range(m):                      # percorre horizontalmente
+        for j in range((n - 1), k, -1):     # percorre verticalmente, de baixo para cima
+            i = j - 1                       # se o elemento é != aplica rot_givens
+            if abs(w[j][k]) > pow(10, -8):  # verifica se w[j][k] é nulo usando intervalo de erro
                 angles = rotation_angle_for_zero(w[i][k], w[j][k])
                 w = rot_givens(w, m, i, j, k, angles["c"], angles["s"])
                 b = rot_givens_unopt(b, 1, i, j, angles["c"], angles["s"])
 
-    # x: solution vector
+    # Generating x solution vector
     x = np.zeros((m,1))
     x[m - 1][0] = b[m - 1][0] / w[m - 1][m - 1]
-    for k in range((m - 2), -1, -1):  # back substitution
-        S = 0
+
+    # Back substitution
+    for k in range((m - 2), -1, -1):
+        s = 0
         for j in range((k + 1), m):
-            S += w[k][j] * x[j]
-        x[k][0] = (b[k][0] - S) / w[k][k]
+            s += w[k][j] * x[j]
+        x[k][0] = (b[k][0] - s) / w[k][k]
     return x
-
-
-# simultaneous systems solution: WH = A --> finds the H matrix
+   
+########################################################################
+# Description: multiple system solution wh = a based on QR Factorization
+# Usage: single_system(w, a)
+# 
+# Pre-Condition:  w: n x m matrix,
+#                 a: n x p matrix
+# Post-Condition: returns h satisfying wh = a
+#
+# Authors: Carlo Bellinati & Rafael Badain @ University of Sao Paulo
+########################################################################
 def multiple_system(w, a):
-    # w: n x p coefficients matrix
-    # A: n x m constant terms matrix
+    # Matrix Shapes
     m = a.shape[1]
     n = w.shape[0]
     p = w.shape[1]
@@ -38,55 +55,57 @@ def multiple_system(w, a):
     for k in range(p):                      # percorre horizontalmente
         for j in range((n - 1), k, -1):     # percorre verticalmente, de baixo para cima
             i = j - 1                       # se o elemento é != aplica rot_givens
-            if abs(w[j][k]) > pow(10, -8):  # verifica se w[j][k] é nulo
+            if abs(w[j][k]) > pow(10, -8):  # verifica se w[j][k] é nulo usando intervalo de erro
                 angles = rotation_angle_for_zero(w[i][k], w[j][k])
                 w = rot_givens(w, p, i, j, k, angles["c"], angles["s"])
                 a = rot_givens_unopt(a, m, i, j, angles["c"], angles["s"])
     
     # H solution matrix
-    H = np.zeros((p,m))
+    h = np.zeros((p,m))
     for j in range(m):
-        H[p - 1][j] = a[p - 1][j] / w[p - 1][p - 1]
+        h[p - 1][j] = a[p - 1][j] / w[p - 1][p - 1]
 
     # Back substitution
     for k in range(p - 2, -1, -1):
         for j in range(m):
-            S = 0
+            s = 0
             for i in range((k + 1), p):
-                S += w[k][i] * H[i][j]
-            H[k][j] = (a[k][j] - S) / w[k][k]
-    return H
+                s += w[k][i] * h[i][j]
+            h[k][j] = (a[k][j] - s) / w[k][k]
+    return h
 
-def systems(H, w, a):
-    # w: n x p coefficients matrix
-    # a: n x m constant terms matrix
-    w_len = np.shape(w)
-    a_len = np.shape(a)
-    m = a_len[1]
-    n = w_len[0]
-    p = w_len[1]
+def systems(h, w, a):
+    # Matrix Shapes
+    m = a.shape[1]
+    n = w.shape[0]
+    p = w.shape[1]
+
     # QR factorization
-    for k in range(p):  # percorre horizontalmente
-        for j in range((n - 1), k, -1):  # percorre verticalmente, de baixo para cima
-            i = j - 1  # se o elemento é != aplica rot_givens
-            if abs(w[j,k]) > pow(10, -8):  # possível problem
+    for k in range(p):                     # percorre horizontalmente
+        for j in range((n - 1), k, -1):    # percorre verticalmente, de baixo para cima
+            i = j - 1                      # se o elemento é != aplica rot_givens
+            if abs(w[j,k]) > pow(10, -8):  # verifica se w[j][k] é nulo usando intervalo de erro
                 angles = rotation_angle_for_zero(w[i,k], w[j,k])
                 w = rot_givens(w, p, i, j, k, angles["c"], angles["s"])
                 a = rot_givens_unopt(a, m, i, j, angles["c"], angles["s"])
 
     # H solution matrix
     for j in range(m):
-        H[p - 1,j] = a[p - 1,j] / w[p - 1,p - 1]
+        h[p - 1,j] = a[p - 1,j] / w[p - 1,p - 1]
 
     # Back substitution
     for k in range(p - 2, -1, -1):
         for j in range(m):
-            S = 0
+            s = 0
             for i in range((k + 1), p):
-                S += w[k,i] * H[i,j]
-            H[k,j] = (a[k,j] - S) / w[k,k]
+                s += w[k,i] * h[i,j]
+            h[k,j] = (a[k,j] - s) / w[k,k]
     return
 
+########################################################################
+# Description: Validation
+# Authors: Carlo Bellinati & Rafael Badain @ University of Sao Paulo
+########################################################################
 def create_A_matrix(n, m):  # create the A matrix for examples c and d
     A = np.zeros((n,m))
     for j in range(m):
