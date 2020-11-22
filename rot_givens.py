@@ -25,16 +25,16 @@ def rotation_angle_for_zero(wik, wjk):
 
 ####################################################################
 # Description: Implements a Givens Rotation Method
-# Usage: rot_givens(W,i,j,k,c,s)
+# Usage: rot_givens(W,m,i,j,k,c,s)
 #        W: matrix to be rotated
+#        m: # of collumns
 #        i, j: plane of rotation coordinates
 #        k: column coordinate to be zero
 #        c, s: cossine and sine of rotation angle
 #
-# Pre-Condition: n,m,i,j,k:int
+# Pre-Condition: m,i,j,k:int
 #                c,s:real
 #                W(n,m): array length n of lists length m
-#
 # Post-Condition: Returns a W(n,m) matrix Givens Rotated.
 #
 # Authors: Carlo Bellinati & Rafael Badain @ University of Sao Paulo
@@ -45,7 +45,7 @@ def isOptimizable(w, i, j, k):
             return False            # existe elemento nao nulo em i e j
     return True                     # todos os elementos sao nulos em i e j
 
-def rot_givens(w, i, j, k, c, s):
+def rot_givens(w, m, i, j, k, c, s):
     # verifica se os elementos de 0..(k-1) sao nulos nas linhas i e j
     optimizable = isOptimizable(w, i, j, k)
     
@@ -53,7 +53,6 @@ def rot_givens(w, i, j, k, c, s):
     if optimizable: r = k           # percorre a partir de k, pois os restantes sao nulos
     else: r = 0                     # percorre a partir do inicio, pois existem nao nulos
 
-    m = w.shape[1]                  # colunas de w
     w[i, r:m], w[j, r:m] = c * w[i][r:m] - s * w[j][r:m], s * w[i][r:m] + c * w[j][r:m]
 
     return w
