@@ -1,4 +1,4 @@
-from rot_givens_simples import *
+from rot_givens import *
 # single sistem solution
 def single_sistem(w, b):
     # w: n x m coefficients matrix
