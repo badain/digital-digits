@@ -41,8 +41,8 @@ def multiple_sistem(w, A):
             i = j - 1  # se o elemento é != aplica rot_givens
             if abs(w[j][k]) > pow(10, -8):  # possível problem
                 angles = rotation_angle_for_zero(w[i][k], w[j][k])
-                w = rot_givens(w, p, i, j, k, angles["c"], angles["s"])
-                A = rot_givens(A, m, i, j, k, angles["c"], angles["s"])
+                w = rot_givens(w, i, j, k, angles["c"], angles["s"])
+                A = rot_givens(A, i, j, k, angles["c"], angles["s"])
 
     # H solution matrix
     H = np.zeros((p,m))
