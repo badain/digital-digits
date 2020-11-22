@@ -18,6 +18,7 @@
 
 # Dependencies
 import numpy as np
+import math
 import argparse
 import time
 from systems_qr import multiple_system
@@ -51,7 +52,7 @@ for digit in range(10): #digitos
 
     # Classification
     for j in range(err.shape[1]): #imagens
-        e_j = np.sqrt((np.sum(pow(err[:,j],2))))
+        e_j = math.sqrt((np.sum(pow(err[:,j],2))))
         if(digit == 0 or e_j < classification_err[j]):
             classification[j] = digit
             classification_err[j] = e_j
