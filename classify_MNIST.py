@@ -60,14 +60,13 @@ for digit in range(10): #digitos
 # Calculo da taxa de acertos
 index = np.loadtxt("dados_mnist/test_index.txt")
 taxa = {"acerto": 0, "erro": 0}
-for c in range(len(classification)):
-    if (classification[c] == index[c]):
-        taxa["acerto"] += 1
-    else:
-        taxa["erro"] += 1
+for c in range(args.n_test):
+    if (classification[c] == index[c]): taxa["acerto"] += 1
+    else:                               taxa["erro"]   += 1
 print(taxa)
-print("Precisão de " + str(100*taxa["acerto"]/args.n_test) + "%.")
+print("Precisão de " + str(100*taxa["acerto"]/args.n_test) + "%")
 
+# Exporta dados da classificacao para cada digito
 if(args.d):
     t = open("output/C_" + str(args.ndig_treino) + "_" + str(args.n_test) + "_" + str(args.p) + ".txt", "w")
     for i in classification: t.write(str(int(i))+"\n")
