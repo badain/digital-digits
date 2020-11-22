@@ -20,7 +20,7 @@
 import numpy as np
 import argparse
 import time
-from sistems_qr import multiple_sistem
+from systems_qr import multiple_system
 
 # Argument Parsing
 parser = argparse.ArgumentParser(description='Decompoe um conjunto de imagens em classificadores, baseado na fatoracao nao negativa')
@@ -43,9 +43,9 @@ for digit in range(10): #digitos
     # Solving A - WH
     w = np.loadtxt("output/W_"+str(digit)+"_"+str(args.ndig_treino)+"_"+str(args.p)+".txt")
     if(args.d): print("Loaded: output/W_"+str(digit)+"_"+str(args.ndig_treino)+"_"+str(args.p)+".txt"+str(a.shape))
-    w_sistem = w.copy()
-    a_sistem = a.copy()
-    h = multiple_sistem(w_sistem, a_sistem)
+    w_system = w.copy()
+    a_system = a.copy()
+    h = multiple_system(w_system, a_system)
     wh = np.matmul(w, h)
     err = np.subtract(a, wh) # A - WH
 

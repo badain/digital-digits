@@ -1,4 +1,5 @@
-from sistems_qr import *
+from systems_qr import *
+import math
 
 # função que normaliza as colunas de W, ou seja a norma de cada coluna é 1
 def normaliza(W,n,p):
@@ -38,12 +39,12 @@ def nao_negativa(A, p,convergencia):
     norma_erro = np.zeros(itmax) # vetor com a norma do erro de cada iteração
     for l in range(itmax):
         normaliza(W, n, p)
-        sistems(H,W,A)
+        systems(H,W,A)
         A = A_copy.copy()
         eliminar_negativos(H,p,m)
         At = A.T.copy()
         Ht = H.T.copy()
-        sistems(Wt,Ht,At)
+        systems(Wt,Ht,At)
         W = Wt.T.copy()
         eliminar_negativos(W,n,p)
         norma_erro[l] = erro(H,W,A)
