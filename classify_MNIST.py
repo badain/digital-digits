@@ -1,15 +1,15 @@
 #####################################################################
-# Description: treinamento baseado em fatoracao nao negativa
-#              para classificacao de digitos manuscritos utilizando
+# Description: classificacao de digitos manuscritos utilizando
 #              a database MNIST
 # Dependencies: time, argparse
-# Usage: classify_MNIST.py n_test
+# Usage: classify_MNIST.py ndig_treino n_test P
 # Positional arguments:
-#     n_test   numero de imagens a ser utilizada para teste
-#     P        fator de componentes da decomposicao
+#     ndig_treino   numero de imagens usadas no treinamento
+#     n_test        numero de imagens a ser utilizada para teste
+#     P             fator de componentes da decomposicao
 # Optional arguments:
 #     -h, --help    shows help message and exit
-#     --t, --times  guarda o tempo de treinamento para cada digito
+#     --t, --times  guarda o tempo de classificacao
 # Post-Condition: armazena as matrizes Wd decompostas para cada
 #                 digito
 #
@@ -28,7 +28,7 @@ parser.add_argument('ndig_treino', type=int, metavar='ndig_treino', help='numero
 parser.add_argument('n_test', type=int, metavar='n_test', help='numero de imagens a ser utilizada para teste')
 parser.add_argument('p', type=int, metavar='P', help='fator de componentes da decomposicao')
 parser.add_argument('--d', '--debug', default=False, action='store_true', help='debug mode')
-parser.add_argument('--t', '--times', default=False, action='store_true', help='guarda o tempo de treinamento para cada digito')
+parser.add_argument('--t', '--times', default=False, action='store_true', help='guarda o tempo de classificacao')
 args = parser.parse_args()
 
 # Input Reading
