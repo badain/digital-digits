@@ -44,7 +44,8 @@ for digit in range(10): #digitos
     w = np.loadtxt("output/W_"+str(digit)+"_"+str(args.ndig_treino)+"_"+str(args.p)+".txt")
     if(args.d): print("Loaded: output/W_"+str(digit)+"_"+str(args.ndig_treino)+"_"+str(args.p)+".txt"+str(a.shape))
     w_sistem = w.copy()
-    h = multiple_sistem(w_sistem, a)
+    a_sistem = a.copy()
+    h = multiple_sistem(w_sistem, a_sistem)
     wh = np.matmul(w, h)
     err = np.subtract(a, wh) # A - WH
 
@@ -64,6 +65,7 @@ for c in range(len(classification)):
     else:
         taxa["erro"] += 1
 print(taxa)
+print("Precisão de " + str(100*taxa["acerto"]/args.n_test) + "%.")
 
 if(args.d):
     t = open("output/C_" + str(args.ndig_treino) + "_" + str(args.n_test) + "_" + str(args.p) + ".txt", "w")
