@@ -1,5 +1,5 @@
 import numpy as np
-
+import math
 ####################################################################
 # Description: calculating c and s based on wik and wjk
 # Usage: rotation_angle_for_zero(wik, wjk)
@@ -14,11 +14,11 @@ import numpy as np
 def rotation_angle_for_zero(wik, wjk):
     if abs(wik) >= abs(wjk):
         tal = (wjk / wik) * (-1)
-        c = 1 / np.sqrt(1 + (tal * tal))
+        c = 1 / math.sqrt(1 + (tal * tal))
         s = c * tal
     else:
         tal = (wik / wjk) * (-1)
-        s = 1 / np.sqrt(1 + (tal * tal))
+        s = 1 / math.sqrt(1 + (tal * tal))
         c = s * tal
 
     return {'c': c, 's': s}
