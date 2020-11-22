@@ -13,7 +13,7 @@ def single_system(w, b):
             if abs(w[j][k]) > pow(10, -8):  # intervalo de erro
                 angles = rotation_angle_for_zero(w[i][k], w[j][k])
                 w = rot_givens(w, m, i, j, k, angles["c"], angles["s"])
-                b = rot_givens(b, 1, i, j, k, angles["c"], angles["s"])
+                b = rot_givens_unopt(b, 1, i, j, angles["c"], angles["s"])
 
     # x: solution vector
     x = np.zeros((m,1))
@@ -27,27 +27,26 @@ def single_system(w, b):
 
 
 # simultaneous systems solution: WH = A --> finds the H matrix
-def multiple_system(w, A):
+def multiple_system(w, a):
     # w: n x p coefficients matrix
     # A: n x m constant terms matrix
-    w_len = np.shape(w)
-    A_len = np.shape(A)
-    m = A_len[1]
-    n = w_len[0]
-    p = w_len[1]
+    m = a.shape[1]
+    n = w.shape[0]
+    p = w.shape[1]
+
     # QR factorization
-    for k in range(p):  # percorre horizontalmente
-        for j in range((n - 1), k, -1):  # percorre verticalmente, de baixo para cima
-            i = j - 1  # se o elemento é != aplica rot_givens
-            if abs(w[j][k]) > pow(10, -8):  # possível problem
+    for k in range(p):                      # percorre horizontalmente
+        for j in range((n - 1), k, -1):     # percorre verticalmente, de baixo para cima
+            i = j - 1                       # se o elemento é != aplica rot_givens
+            if abs(w[j][k]) > pow(10, -8):  # verifica se w[j][k] é nulo
                 angles = rotation_angle_for_zero(w[i][k], w[j][k])
                 w = rot_givens(w, p, i, j, k, angles["c"], angles["s"])
-                A = rot_givens(A, m, i, j, k, angles["c"], angles["s"])
-
+                a = rot_givens_unopt(a, m, i, j, angles["c"], angles["s"])
+    
     # H solution matrix
     H = np.zeros((p,m))
     for j in range(m):
-        H[p - 1][j] = A[p - 1][j] / w[p - 1][p - 1]
+        H[p - 1][j] = a[p - 1][j] / w[p - 1][p - 1]
 
     # Back substitution
     for k in range(p - 2, -1, -1):
@@ -55,15 +54,15 @@ def multiple_system(w, A):
             S = 0
             for i in range((k + 1), p):
                 S += w[k][i] * H[i][j]
-            H[k][j] = (A[k][j] - S) / w[k][k]
+            H[k][j] = (a[k][j] - S) / w[k][k]
     return H
 
-def systems(H, w, A):
+def systems(H, w, a):
     # w: n x p coefficients matrix
-    # A: n x m constant terms matrix
+    # a: n x m constant terms matrix
     w_len = np.shape(w)
-    A_len = np.shape(A)
-    m = A_len[1]
+    a_len = np.shape(a)
+    m = a_len[1]
     n = w_len[0]
     p = w_len[1]
     # QR factorization
@@ -73,11 +72,11 @@ def systems(H, w, A):
             if abs(w[j,k]) > pow(10, -8):  # possível problem
                 angles = rotation_angle_for_zero(w[i,k], w[j,k])
                 w = rot_givens(w, p, i, j, k, angles["c"], angles["s"])
-                A = rot_givens(A, m, i, j, k, angles["c"], angles["s"])
+                a = rot_givens_unopt(a, m, i, j, angles["c"], angles["s"])
 
     # H solution matrix
     for j in range(m):
-        H[p - 1,j] = A[p - 1,j] / w[p - 1,p - 1]
+        H[p - 1,j] = a[p - 1,j] / w[p - 1,p - 1]
 
     # Back substitution
     for k in range(p - 2, -1, -1):
@@ -85,7 +84,7 @@ def systems(H, w, A):
             S = 0
             for i in range((k + 1), p):
                 S += w[k,i] * H[i,j]
-            H[k,j] = (A[k,j] - S) / w[k,k]
+            H[k,j] = (a[k,j] - S) / w[k,k]
     return
 
 def create_A_matrix(n, m):  # create the A matrix for examples c and d

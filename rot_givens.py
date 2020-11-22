@@ -56,3 +56,8 @@ def rot_givens(w, m, i, j, k, c, s):
     w[i, r:m], w[j, r:m] = c * w[i][r:m] - s * w[j][r:m], s * w[i][r:m] + c * w[j][r:m]
 
     return w
+
+def rot_givens_unopt(w, m, i, j, c, s):
+    w[i, 0:m], w[j, 0:m] = c * w[i][0:m] - s * w[j][0:m], s * w[i][0:m] + c * w[j][0:m]
+
+    return w
