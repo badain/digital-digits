@@ -25,7 +25,7 @@ def single_system(w, b):
 
     # Generating x solution vector
     x = np.zeros((m,1))
-    x[m - 1][0] = b[m - 1][0] / w[m - 1][m - 1]
+    x[m - 1,0] = b[m - 1,0] / w[m - 1,m - 1]
 
     # Back substitution
     for k in range((m - 2), -1, -1):
@@ -102,6 +102,12 @@ def systems(h, w, a):
             h[k,j] = (a[k,j] - s) / w[k,k]
     return
 
+def erro(W,H,A):
+    WH = np.matmul(W,H)
+    err = np.subtract(WH,A)
+    erro = math.sqrt(np.sum(pow(err[:,:],2)))
+    return erro
+
 ########################################################################
 # Description: Validation
 # Authors: Carlo Bellinati & Rafael Badain @ University of Sao Paulo
@@ -120,8 +126,12 @@ def create_A_matrix(n, m):  # create the A matrix for examples c and d
 
 
 def main():
-    # client test
+    # TESTES:
+
+    f = open("Relatório/testes_primeira_tarefa.txt", "w")
+
     # a) Single system Wx = b: n = m = 64; W = wa, b = ba
+
     wa = np.zeros((64,64))
     for i in range(64):
         for j in range(64):
@@ -130,10 +140,15 @@ def main():
             elif (abs(i - j) == 1):
                 wa[i][j] = 1
     ba = np.ones((64, 1))
-    wc = wa.copy()  # useful copy for example c
+    wa_copy = wa.copy()
+    wc = wa.copy()
     xa = single_system(wa, ba)
+    f.write("Teste A:")
+    f.write("Erro = " + str(erro(wa_copy, xa, np.ones((64,1)))))
+    np.savetxt("Teste_A.txt", xa)
 
     # b) Single system Wx = b: n = 20, m = 17; W = wb, b = bb
+
     wb = np.zeros((20,17))
     bb = np.zeros((20,1))
     for i in range(20):
@@ -141,30 +156,36 @@ def main():
         for j in range(17):
             if (abs(i - j) <= 4):
                 wb[i][j] = 1 / (i + j + 1)
-    wd = wb.copy()  # useful copy for example d
+    wb_copy = wb.copy()
+    bb_copy = bb.copy()
+    wd = wb.copy()
     xb = single_system(wb, bb)
+    f.write("Teste B:")
+    f.write("Erro = " + str(erro(wb_copy, xb, bb_copy)))
+    np.savetxt("Teste_B.txt", xb)
 
     # c) Multiple systems WH = A; n = p = 63, m = 3, W = wc, A = Ac
+
     Ac = create_A_matrix(64, 3)
+    Ac_copy = Ac.copy()
+    wc_copy = wc.copy()
     hc = multiple_system(wc, Ac)
+    f.write("Teste C:")
+    f.write("Erro = " + str(erro(wc_copy, hc, Ac_copy)))
+    np.savetxt("Teste_C.txt", hc)
 
     # d) Multiple systems WH = A; n = 20, p = 17; m = 3, W = wd, A = Ad
+
     Ad = create_A_matrix(20, 3)
+    Ad_copy = Ad.copy()
+    wd_copy = wd.copy()
     hd = multiple_system(wd, Ad)
-    print("teste A")
-    print(xa)
-    print()
-    print("teste B")
-    print(xb)
-    print()
-    print("teste C")
-    print(hc)
-    print()
-    print("teste D")
-    print(hd)
+    f.write("Teste D:")
+    f.write("Erro = " + str(erro(wd_copy, hd, Ad_copy)))
+    np.savetxt("Teste_D.txt", hd)
 
     return
 
-teste = False
+teste = True
 if (teste):
     main()
