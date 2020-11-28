@@ -92,5 +92,5 @@ def main():
     print(decomposicao[2][:convergencia[1]])
     return
     
-validation = True
+validation = False
 if (validation): main()
