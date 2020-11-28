@@ -3,15 +3,15 @@ Classifica dígitos manuscritos utilizando fatoração QR\
 Authors: Carlo Bellinati & Rafael Badain @ University of Sao Paulo
 
 ## training_MNIST.py
-*Description*: treinamento baseado em fatoracao nao negativa para classificacao de digitos manuscritos utilizando a database MNIST\
-Dependencies: time, argparse, fatorização_nao_negativa\
-Usage: training_MNIST.py ndig_treino p --t\
-Positional arguments:\
+**Description**: treinamento baseado em fatoracao nao negativa para classificacao de digitos manuscritos utilizando a database MNIST\
+**Dependencies**: *time, argparse, fatorização_nao_negativa*\
+**Usage**: training_MNIST.py ndig_treino p --t\
+**Positional arguments**:\
     ndig_treino   numero de imagens a ser utilizada para fatoracao\
     P             fator de componentes da decomposicao\
-Optional arguments:\
+**Optional arguments**:\
     --t, --times  guarda o tempo de treinamento para cada digito em "output/train_times_ndig_treino_p.txt"\
-Post-Condition: armazena as matrizes Wd decompostas para cada digito em "output/W_digito_ndig_treino_p.txt"
+**Post-Condition**: armazena as matrizes Wd decompostas para cada digito em "output/W_digito_ndig_treino_p.txt"
 
 ## training_MNIST_deluxe.py
 Description: treinamento baseado em fatoracao nao negativa para classificacao de digitos manuscritos utilizando a database MNIST\
