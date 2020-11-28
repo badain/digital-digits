@@ -1,4 +1,4 @@
-from systems_qr import systems
+from systems_qr import multiple_system
 import numpy as np
 import math
 ######################################################################
@@ -44,20 +44,18 @@ def nao_negativa(A, p, convergencia):
 
     # Matrix Generation
     W = np.random.rand(n, p)
-    Wt = W.T.copy()
-    H = np.random.rand(p,m)
 
     # Convergencia
     norma_erro = np.zeros(convergencia[1]) # vetor com a norma do erro de cada iteração
     
     # Fatoracao nao negativa
-    for l in range(convergencia[1]):              # convergencia[1] -> max iteracoes
-        normaliza(W, n, p)                        # normaliza w
-        systems(H, W, A.copy())                   # qr factoration
-        H = np.where(H < 0, 1e-08, H)             # substitui negativos e 0 por epslon 1e-08 (utilizar 0 pode causar instabilidade numérica)
-        systems(Wt, H.T.copy(), A.T.copy())       # qr factoration (transpostas)
-        W = np.where(Wt.T < 0, 1e-08, Wt.T)       # substitui pela transposta e transforma negativos e 0 em epslon 1e-08
-        norma_erro[l] = erro(H, W, A.copy())      # avalia o erro entre A e WH
+    for l in range(convergencia[1]):                       # convergencia[1] -> max iteracoes
+        normaliza(W, n, p)                                 # normaliza w
+        H = multiple_system(W, A.copy())                   # qr factoration
+        H = np.where(H < 0, 1e-08, H)                      # substitui negativos e 0 por epslon 1e-08 (utilizar 0 pode causar instabilidade numérica)
+        Wt = multiple_system(H.T.copy(), A.T.copy())       # qr factoration (transpostas)
+        W = np.where(Wt.T < 0, 1e-08, Wt.T)                # substitui pela transposta e transforma negativos e 0 em epslon 1e-08
+        norma_erro[l] = erro(H, W, A.copy())               # avalia o erro entre A e WH
         
         # Critério de Convergência
         if (abs(norma_erro[l] - norma_erro[l-1]) < 1e-05): # erro 1e-05 usado para definir convergencia
@@ -90,6 +88,25 @@ def main():
     print(decomposicao[1])
     print("\nNorma do erro para cada iteração:")
     print(decomposicao[2][:convergencia[1]])
+    
+    # frequencia dos resultados:
+    fat1 = 0
+    fat2 = 0
+    for i in range(10000):
+        convergencia = [True, 100]
+        A = A_copy.copy()
+        p = 2
+        decomposicao = nao_negativa(A, p, convergencia)
+        if (abs(decomposicao[0][0,0] - 3/5) < 0.001):
+            fat1 += 1
+        elif ((abs(decomposicao[0][0,0]) < 0.001)):
+            fat2 += 1
+        else:
+            print("Essa fatoração não deu uma das duas previstas")
+    print()
+    print("Frequência da fatoração WH = " + str(fat1/10000))
+    print("Frequência da fatoração W'H' = " + str(fat2/10000))
+    
     return
     
 validation = False
