@@ -40,24 +40,23 @@ if(args.d): print("Loaded: dados_mnist/test_images.txt "+str(a.shape))
 classification  = np.zeros(args.n_test)
 classification_err = np.zeros(args.n_test)
 
-for digit in range(10): #digitos
+for digit in range(10): # Digitos a serem testados
+    if(args.d): print("Loaded: output/W_"+str(digit)+"_"+str(args.ndig_treino)+"_"+str(args.p)+".txt"+str(a.shape))
+
     # Solving A - WH
     w = np.loadtxt("output/W_"+str(digit)+"_"+str(args.ndig_treino)+"_"+str(args.p)+".txt")
-    if(args.d): print("Loaded: output/W_"+str(digit)+"_"+str(args.ndig_treino)+"_"+str(args.p)+".txt"+str(a.shape))
-    w_system = w.copy()
-    a_system = a.copy()
-    h = multiple_system(w_system, a_system)
-    wh = np.matmul(w, h)
+    wh = np.matmul(w, multiple_system(w.copy(), a.copy())) # obtem h que satisfaca wh = a
     err = np.subtract(a, wh) # A - WH
 
     # Classification
-    for j in range(err.shape[1]): #imagens
-        e_j = math.sqrt((np.sum(pow(err[:,j],2))))
+    for j in range(err.shape[1]): # imagens
+        e_j = math.sqrt((np.sum(pow(err[:,j],2)))) # norma euclidiana da coluna
         if(digit == 0 or e_j < classification_err[j]):
             classification[j] = digit
             classification_err[j] = e_j
     
 # Calculo da taxa de acertos
+if(args.d): print("Loaded: dados_mnist/test_index.txt")
 index = np.loadtxt("dados_mnist/test_index.txt")
 taxa = {"acerto": 0, "erro": 0}
 for c in range(args.n_test):
