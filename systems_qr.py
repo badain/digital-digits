@@ -76,34 +76,12 @@ def multiple_system(w, a):
             h[k][j] = (a[k][j] - s) / w[k][k]
     return h
 
-def systems(h, w, a):
-    # Matrix Shapes
-    m = a.shape[1]
-    n = w.shape[0]
-    p = w.shape[1]
 
-    # QR factorization
-    for k in range(p):                     # percorre horizontalmente
-        for j in range((n - 1), k, -1):    # percorre verticalmente, de baixo para cima
-            i = j - 1                      # se o elemento é != aplica rot_givens
-            if abs(w[j,k]) > 1e-09:        # verifica se w[j][k] é nulo usando intervalo de erro
-                angles = rotation_angle_for_zero(w[i,k], w[j,k])
-                w = rot_givens(w, p, i, j, k, angles["c"], angles["s"])
-                a = rot_givens_unopt(a, m, i, j, angles["c"], angles["s"])
-
-    # H solution matrix
-    for j in range(m):
-        h[p - 1,j] = a[p - 1,j] / w[p - 1,p - 1]
-
-    # Back substitution
-    for k in range(p - 2, -1, -1):
-        for j in range(m):
-            s = 0
-            for i in range((k + 1), p):
-                s += w[k,i] * h[i,j]
-            h[k,j] = (a[k,j] - s) / w[k,k]
-    return
-
+########################################################################
+# Description: Error of the linear sistem solution
+#
+# Authors: Carlo Bellinati & Rafael Badain @ University of Sao Paulo
+########################################################################
 def erro(W,H,A):
     WH = np.matmul(W,H)
     err = np.subtract(WH,A)
