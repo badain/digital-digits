@@ -9,7 +9,7 @@
 #     P             fator de componentes da decomposicao
 # Optional arguments:
 #     -h, --help    shows help message and exit
-#     --t, --times  guarda o tempo de classificacao
+#     --d, --debug  debug mode
 # Post-Condition: armazena as matrizes Wd decompostas para cada
 #                 digito
 #
@@ -29,8 +29,8 @@ parser.add_argument('n_test', type=int, metavar='n_test', help='numero de imagen
 parser.add_argument('--d', '--debug', default=False, action='store_true', help='debug mode')
 args = parser.parse_args()
 
-ndig_treino = [100]
-componentes = [5,10]
+ndig_treino = [100, 1000, 4000]
+componentes = [5,10,15]
 
 # Input Reading
 a = np.loadtxt("dados_mnist/test_images.txt", usecols=range(args.n_test)) / 255
