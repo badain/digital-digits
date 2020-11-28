@@ -2,6 +2,7 @@ from rot_givens import *
 ######################################################################
 # Description: single system solution wx = b based on QR Factorization
 # Usage: single_system(w, b)
+# Dependencies: rot_givens.py
 # 
 # Pre-Condition:  w: n x m matrix,
 #                 b: n x 1 matrix
@@ -18,7 +19,7 @@ def single_system(w, b):
     for k in range(m):                      # percorre horizontalmente
         for j in range((n - 1), k, -1):     # percorre verticalmente, de baixo para cima
             i = j - 1                       # se o elemento é != aplica rot_givens
-            if abs(w[j][k]) > pow(10, -8):  # verifica se w[j][k] é nulo usando intervalo de erro
+            if abs(w[j][k]) > 1e-09:        # verifica se w[j][k] é nulo usando intervalo de erro (10^-9)
                 angles = rotation_angle_for_zero(w[i][k], w[j][k])
                 w = rot_givens(w, m, i, j, k, angles["c"], angles["s"])
                 b = rot_givens_unopt(b, 1, i, j, angles["c"], angles["s"])
@@ -38,6 +39,7 @@ def single_system(w, b):
 ########################################################################
 # Description: multiple system solution wh = a based on QR Factorization
 # Usage: single_system(w, a)
+# Dependencies: rot_givens.py
 # 
 # Pre-Condition:  w: n x m matrix,
 #                 a: n x p matrix
@@ -55,7 +57,7 @@ def multiple_system(w, a):
     for k in range(p):                      # percorre horizontalmente
         for j in range((n - 1), k, -1):     # percorre verticalmente, de baixo para cima
             i = j - 1                       # se o elemento é != aplica rot_givens
-            if abs(w[j][k]) > pow(10, -8):  # verifica se w[j][k] é nulo usando intervalo de erro
+            if abs(w[j][k]) > 1e-09:        # verifica se w[j][k] é nulo usando intervalo de erro (10^-9)
                 angles = rotation_angle_for_zero(w[i][k], w[j][k])
                 w = rot_givens(w, p, i, j, k, angles["c"], angles["s"])
                 a = rot_givens_unopt(a, m, i, j, angles["c"], angles["s"])
@@ -84,7 +86,7 @@ def systems(h, w, a):
     for k in range(p):                     # percorre horizontalmente
         for j in range((n - 1), k, -1):    # percorre verticalmente, de baixo para cima
             i = j - 1                      # se o elemento é != aplica rot_givens
-            if abs(w[j,k]) > pow(10, -8):  # verifica se w[j][k] é nulo usando intervalo de erro
+            if abs(w[j,k]) > 1e-09:        # verifica se w[j][k] é nulo usando intervalo de erro
                 angles = rotation_angle_for_zero(w[i,k], w[j,k])
                 w = rot_givens(w, p, i, j, k, angles["c"], angles["s"])
                 a = rot_givens_unopt(a, m, i, j, angles["c"], angles["s"])
