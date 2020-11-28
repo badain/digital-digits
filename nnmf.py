@@ -1,5 +1,6 @@
-from systems_qr import *
-import argparse
+from systems_qr import systems
+import numpy as np
+import math
 ######################################################################
 # Description: biblioteca de funcoes para resolucao de fatoracao nao
 #              negativa
@@ -91,7 +92,5 @@ def main():
     print(decomposicao[2][:convergencia[1]])
     return
     
-parser = argparse.ArgumentParser(description='System resolution based on Non-Negative Factorization')
-parser.add_argument('--v', '--validationn', default=False, action='store_true', help='validation mode')
-args = parser.parse_args()
-if (args.v): main()
+validation = True
+if (validation): main()

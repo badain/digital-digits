@@ -1,0 +1,46 @@
+Taxas de acerto para n_test: 10000
+
+ndig_treino: 100 e p: 5
+{'acerto': 8801, 'erro': 1199}
+Precisao de 88.01%
+Tempo de Classificacao: 5.546467542648315s
+
+ndig_treino: 100 e p: 10
+{'acerto': 9006, 'erro': 994}
+Precisao de 90.06%
+Tempo de Classificacao: 12.316756248474121s
+
+ndig_treino: 100 e p: 15
+{'acerto': 9095, 'erro': 905}
+Precisao de 90.95%
+Tempo de Classificacao: 20.884232997894287s
+
+ndig_treino: 1000 e p: 5
+{'acerto': 9079, 'erro': 921}
+Precisao de 90.79%
+Tempo de Classificacao: 6.000551700592041s
+
+ndig_treino: 1000 e p: 10
+{'acerto': 9291, 'erro': 709}
+Precisao de 92.91%
+Tempo de Classificacao: 12.923640966415405s
+
+ndig_treino: 1000 e p: 15
+{'acerto': 9359, 'erro': 641}
+Precisao de 93.59%
+Tempo de Classificacao: 18.901272535324097s
+
+ndig_treino: 4000 e p: 5
+{'acerto': 9169, 'erro': 831}
+Precisao de 91.69%
+Tempo de Classificacao: 5.9160027503967285s
+
+ndig_treino: 4000 e p: 10
+{'acerto': 9349, 'erro': 651}
+Precisao de 93.49%
+Tempo de Classificacao: 11.353779077529907s
+
+ndig_treino: 4000 e p: 15
+{'acerto': 9392, 'erro': 608}
+Precisao de 93.92%
+Tempo de Classificacao: 18.772492170333862s

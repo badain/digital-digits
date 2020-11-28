@@ -16,8 +16,11 @@
 #####################################################################
 
 # Dependencies
+import numpy as np
+import argparse
 import time
-from nnmf import *
+import math
+from nnmf import nao_negativa
 
 # Decompoe A = Wd*H por fatoracao nao negativa
 def treino(ndig_treino, p, d):

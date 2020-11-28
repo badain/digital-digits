@@ -1,5 +1,4 @@
 from rot_givens import *
-import argparse
 ######################################################################
 # Description: single system solution wx = b based on QR Factorization
 # Usage: single_system(w, b)
@@ -149,7 +148,7 @@ def main():
     xa = single_system(wa, ba)
     f.write("Teste A:")
     f.write("Erro = " + str(erro(wa_copy, xa, np.ones((64,1)))))
-    np.savetxt("Teste_A.txt", xa)
+    np.savetxt("Relatório/Teste_A.txt", xa)
 
     # b) Single system Wx = b: n = 20, m = 17; W = wb, b = bb
     wb = np.zeros((20,17))
@@ -165,7 +164,7 @@ def main():
     xb = single_system(wb, bb)
     f.write("Teste B:")
     f.write("Erro = " + str(erro(wb_copy, xb, bb_copy)))
-    np.savetxt("Teste_B.txt", xb)
+    np.savetxt("Relatório/Teste_B.txt", xb)
 
     # c) Multiple systems WH = A; n = p = 63, m = 3, W = wc, A = Ac
     Ac = create_A_matrix(64, 3)
@@ -174,7 +173,7 @@ def main():
     hc = multiple_system(wc, Ac)
     f.write("Teste C:")
     f.write("Erro = " + str(erro(wc_copy, hc, Ac_copy)))
-    np.savetxt("Teste_C.txt", hc)
+    np.savetxt("Relatório/Teste_C.txt", hc)
 
     # d) Multiple systems WH = A; n = 20, p = 17; m = 3, W = wd, A = Ad
     Ad = create_A_matrix(20, 3)
@@ -183,11 +182,9 @@ def main():
     hd = multiple_system(wd, Ad)
     f.write("Teste D:")
     f.write("Erro = " + str(erro(wd_copy, hd, Ad_copy)))
-    np.savetxt("Teste_D.txt", hd)
+    np.savetxt("Relatório/Teste_D.txt", hd)
 
     return
 
-parser = argparse.ArgumentParser(description='System resolution based on QR Factoration')
-parser.add_argument('--v', '--validation', default=False, action='store_true', help='validation mode')
-args = parser.parse_args()
-if (args.v): main()
+validation = False
+if (validation): main()
