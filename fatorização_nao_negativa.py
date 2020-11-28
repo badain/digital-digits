@@ -59,7 +59,7 @@ def nao_negativa(A, p, convergencia):
         norma_erro[l] = erro(H, W, A.copy())      # avalia o erro entre A e WH
         
         # Critério de Convergência
-        if (abs(norma_erro[l] - norma_erro[l-1]) < 1e-20): # erro 1e-05 usado para definir convergencia
+        if (abs(norma_erro[l] - norma_erro[l-1]) < 1e-05): # erro 1e-05 usado para definir convergencia
             convergencia[0] = True
             convergencia[1] = l + 1
             break
