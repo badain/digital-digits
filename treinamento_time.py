@@ -18,7 +18,7 @@
 
 # Dependencies
 import time
-from fatorização_nao_negativa import*
+from nnmf import *
 
 ## Decompoe A = Wd*H por fatoracao nao negativa
 def treino(ndig_treino, p, d):
