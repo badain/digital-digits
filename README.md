@@ -14,36 +14,36 @@ Authors: Carlo Bellinati & Rafael Badain @ University of Sao Paulo
 **Post-Condition**: armazena as matrizes Wd decompostas para cada digito em "output/W_digito_ndig_treino_p.txt"
 
 ## training_MNIST_deluxe.py
-Description: treinamento baseado em fatoracao nao negativa para classificacao de digitos manuscritos utilizando a database MNIST\
-Automatizado para:\
+**Description**: treinamento baseado em fatoracao nao negativa para classificacao de digitos manuscritos utilizando a database MNIST\
+**Automatizado para**:\
     ndig 100, 1000, 4000 imagens\
     p    5, 10, 15\
-Dependencies: time, argparse, math, nnmf.py\
-Usage: training_MNIST_deluxe.py --t\
-Optional arguments:\
+**Dependencies**: time, argparse, math, nnmf.py\
+**Usage**: training_MNIST_deluxe.py --t\
+**Optional arguments**:\
     --t, --times  guarda o tempo de treinamento para cada digito em "output/train_times_ndig_treino_p.txt"\
-Post-Condition: armazena as matrizes Wd decompostas para cada digito  em "output/W_digito_ndig_treino_p.txt"
+**Post-Condition**: armazena as matrizes Wd decompostas para cada digito  em "output/W_digito_ndig_treino_p.txt"
 
 ## classify_MNIST.py
-Description: classificacao de digitos manuscritos utilizando a database MNIST\
-Dependencies: argparse, numpy, math, systems_qr.py\
-Usage: classify_MNIST.py ndig_treino n_test P\
-Positional arguments:\
+**Description**: classificacao de digitos manuscritos utilizando a database MNIST\
+**Dependencies**: argparse, numpy, math, systems_qr.py\
+**Usage**: classify_MNIST.py ndig_treino n_test P\
+**Positional arguments**:\
     ndig_treino   numero de imagens usadas no treinamento\
     n_test        numero de imagens a ser utilizada para teste\
     P             fator de componentes da decomposicao\
-Optional arguments:\
+**Optional arguments**:\
     --e, --export exporta os dados da classificacao de cada imagem em "output/C_ndig_treino_n_test_p.txt"\
-Post-Condition: exibe a taxa de precisao do classificador, baseado no index "test_index.txt"
+**Post-Condition**: exibe a taxa de precisao do classificador, baseado no index "test_index.txt"
 
 ## classify_MNIST_deluxe.py
-Description: classificacao de digitos manuscritos utilizando a database MNIST\
-Automatizado para:\
+**Description**: classificacao de digitos manuscritos utilizando a database MNIST\
+**Automatizado para**:\
     ndig_treino 100, 1000, 4000\
     componentes 5, 10, 15\
-Dependencies: time, argparse, numpy, math, systems_qr.py\
-Usage: classify_MNIST_deluxe.py ndig_treino n_test P\
-Positional arguments:\
+**Dependencies**: time, argparse, numpy, math, systems_qr.py\
+**Usage**: classify_MNIST_deluxe.py ndig_treino n_test P\
+**Positional arguments**:\
     n_test        numero de imagens a ser utilizada para teste\
 Optional arguments:\
     --e, --export exporta os dados da classificacao de cada imagem em "output/C_ndig_treino_n_test_p.txt"\
@@ -51,12 +51,13 @@ Post-Condition: armazena a taxa de precisao e o tempo do classificador em "outpu
 
 ## Bibliotecas
 ### nnmf.py
-Description: biblioteca de funcoes para implementacao da fatoracao nao negativa de matrizes\
-Dependencies: numpy, math, systems_qr.py
+**Description**: biblioteca de funcoes para implementacao da fatoracao nao negativa de matrizes\
+**Dependencies**: numpy, math, systems_qr.py
 
 ### systems_qr.py
-Description: biblioteca de funcoes para implementacao da fatoracao QR de matrizes\
-Dependencies: numpy, math, rot_givens.py
+**Description**: biblioteca de funcoes para implementacao da fatoracao QR de matrizes\
+**Dependencies**: numpy, math, rot_givens.py
 
 ### rot_givens.py
-Description: biblioteca de funcoes para implementacao da rotacao de givens de matrizes\
+**Description**: biblioteca de funcoes para implementacao da rotacao de givens de matrizes\
+**Dependencies**: numpy, math
