@@ -94,9 +94,9 @@ def main():
     fat2 = 0
     for i in range(10000):
         convergencia = [True, 100]
-        A = A_copy.copy()
+        a = a.copy()
         p = 2
-        decomposicao = nao_negativa(A, p, convergencia)
+        decomposicao = nao_negativa(a, p, convergencia)
         if (abs(decomposicao[0][0,0] - 3/5) < 0.001):
             fat1 += 1
         elif ((abs(decomposicao[0][0,0]) < 0.001)):
@@ -109,5 +109,5 @@ def main():
     
     return
     
-validation = False
+validation = True
 if (validation): main()
