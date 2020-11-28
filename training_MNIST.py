@@ -2,7 +2,7 @@
 # Description: treinamento baseado em fatoracao nao negativa
 #              para classificacao de digitos manuscritos utilizando
 #              a database MNIST
-# Dependencies: time, argparse, fatorização_nao_negativa
+# Dependencies: time, argparse, nnmf.py
 # Usage: training_MNIST.py ndig_treino p --t
 # Positional arguments:
 #     ndig_treino   numero de imagens a ser utilizada para fatoracao
@@ -17,9 +17,9 @@
 #####################################################################
 
 # Dependencies
+from nnmf import *
 import argparse
 import time
-from nnmf import *
 
 ## Decompoe A = Wd*H por fatoracao nao negativa
 def treino(ndig_treino, p, d):
@@ -37,7 +37,7 @@ args = parser.parse_args()
 
 # Grava o tempo despendido no treinamento para cada digito
 if(args.t):
-    t = open("output/train_times.txt", "w")
+    t = open("output/train_times_" + str(args.ndig_treino) + "_" + str(args.p) +".txt", "w")
     t.write("Tempos para o treinamento de cada digito (em s):\n")
 
     # Gera a matriz wd para cada digito

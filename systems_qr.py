@@ -79,7 +79,6 @@ def multiple_system(w, a):
 
 ########################################################################
 # Description: Error of the linear sistem solution
-#
 # Authors: Carlo Bellinati & Rafael Badain @ University of Sao Paulo
 ########################################################################
 def erro(W,H,A):
@@ -90,7 +89,6 @@ def erro(W,H,A):
 
 ########################################################################
 # Description: System resolution based on QR Factoration Validation
-# Usage: --v, --validation validation mode
 # Authors: Carlo Bellinati & Rafael Badain @ University of Sao Paulo
 ########################################################################
 

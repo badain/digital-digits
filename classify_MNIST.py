@@ -1,7 +1,7 @@
 #####################################################################
 # Description: classificacao de digitos manuscritos utilizando
 #              a database MNIST
-# Dependencies: time, argparse
+# Dependencies: time, argparse, numpy, math, systems_qr.py
 # Usage: classify_MNIST.py ndig_treino n_test P
 # Positional arguments:
 #     ndig_treino   numero de imagens usadas no treinamento
@@ -9,9 +9,9 @@
 #     P             fator de componentes da decomposicao
 # Optional arguments:
 #     -h, --help    shows help message and exit
-#     --t, --times  guarda o tempo de classificacao
-# Post-Condition: armazena as matrizes Wd decompostas para cada
-#                 digito
+#     --e, --export exporta os dados da classificacao de cada imagem
+# Post-Condition: exibe a taxa de precisao do classificador
+#                 baseado no index "test_index.txt"
 #
 # Authors: Carlo Bellinati & Rafael Badain @ University of Sao Paulo
 #####################################################################
@@ -20,7 +20,6 @@
 import numpy as np
 import math
 import argparse
-import time
 from systems_qr import multiple_system
 
 # Argument Parsing
@@ -28,8 +27,7 @@ parser = argparse.ArgumentParser(description='Decompoe um conjunto de imagens em
 parser.add_argument('n_test', type=int, metavar='n_test', help='numero de imagens a ser utilizada para teste')
 parser.add_argument('ndig_treino', type=int, metavar='ndig_treino', help='numero de imagens usadas no treinamento')
 parser.add_argument('p', type=int, metavar='P', help='fator de componentes da decomposicao')
-parser.add_argument('--d', '--debug', default=False, action='store_true', help='debug mode')
-parser.add_argument('--t', '--times', default=False, action='store_true', help='guarda o tempo de classificacao')
+parser.add_argument('--e', '--export', default=False, action='store_true', help='exporta os dados da classificacao de cada imagem')
 args = parser.parse_args()
 
 # Input Reading

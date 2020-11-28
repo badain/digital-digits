@@ -1,17 +1,17 @@
 #####################################################################
 # Description: classificacao de digitos manuscritos utilizando
 #              a database MNIST
-# Dependencies: time, argparse
-# Usage: classify_MNIST.py ndig_treino n_test P
+# Automatizado para:
+#     ndig_treino = 100, 1000, 4000
+#     componentes = 5,10,15
+# Dependencies: time, argparse, numpy, math, systems_qr.py
+# Usage: classify_MNIST_deluxe.py n_test
 # Positional arguments:
-#     ndig_treino   numero de imagens usadas no treinamento
 #     n_test        numero de imagens a ser utilizada para teste
-#     P             fator de componentes da decomposicao
 # Optional arguments:
 #     -h, --help    shows help message and exit
-#     --d, --debug  debug mode
-# Post-Condition: armazena as matrizes Wd decompostas para cada
-#                 digito
+#     --e, --export exporta os dados da classificacao de cada imagem
+# Post-Condition: armazena a taxa de precisao do classificador
 #
 # Authors: Carlo Bellinati & Rafael Badain @ University of Sao Paulo
 #####################################################################
@@ -26,7 +26,7 @@ from systems_qr import multiple_system
 # Argument Parsing
 parser = argparse.ArgumentParser(description='Decompoe um conjunto de imagens em classificadores, baseado na fatoracao nao negativa')
 parser.add_argument('n_test', type=int, metavar='n_test', help='numero de imagens a ser utilizada para teste')
-parser.add_argument('--d', '--debug', default=False, action='store_true', help='debug mode')
+parser.add_argument('--e', '--export', default=False, action='store_true', help='exporta os dados da classificacao de cada imagem')
 args = parser.parse_args()
 
 ndig_treino = [100, 1000, 4000]
@@ -37,7 +37,7 @@ a = np.loadtxt("dados_mnist/test_images.txt", usecols=range(args.n_test)) / 255
 if(args.d): print("Loaded: dados_mnist/test_images.txt "+str(a.shape))
 
 # Output Writing
-r = open("output/classify_index"+ "_" + str(args.n_test) + ".txt", "w")
+r = open("output/classify_index_" + str(args.n_test) + ".txt", "w")
 r.write("Taxas de acerto para n_test: "+str(args.n_test)+"\n")
 
 # For each image, Wd*H = A

@@ -4,7 +4,7 @@ import math
 ######################################################################
 # Description: biblioteca de funcoes para resolucao de fatoracao nao
 #              negativa
-# Dependencies: systems_qr.py
+# Dependencies: numpy, math, systems_qr.py
 #
 # Authors: Carlo Bellinati & Rafael Badain @ University of Sao Paulo
 ######################################################################
@@ -67,7 +67,6 @@ def nao_negativa(A, p, convergencia):
 
 ########################################################################
 # Description: System resolution based on Non-Negative Factorization
-# Usage: --v, --validation validation mode
 # Authors: Carlo Bellinati & Rafael Badain @ University of Sao Paulo
 ########################################################################
 def main():

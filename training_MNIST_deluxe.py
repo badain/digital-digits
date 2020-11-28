@@ -5,7 +5,7 @@
 # Automatizado para:
 #              ndig 100, 1000, 4000 imagens
 #              p    5, 10, 15
-# Dependencies: time, nnmf.py
+# Dependencies: time, argparse, math, nnmf.py
 # Usage: training_MNIST_deluxe.py --t
 # Optional arguments:
 #     --t, --times  guarda o tempo de treinamento para cada digito
@@ -41,7 +41,7 @@ componentes = [5, 10, 15]
 if(args.t):
     for ndig_treino in ndig:
         for p in componentes:
-            t = open("output/train_times"+ "_" + str(ndig_treino) + "_" + str(p) +".txt", "w")
+            t = open("output/train_times_" + str(ndig_treino) + "_" + str(p) +".txt", "w")
             t.write("Tempos para o treinamento de cada digito (em s):\nndig_treino: "+str(ndig_treino)+" p: "+str(p)+"\n")
 
             # Gera a matriz wd para cada digito
