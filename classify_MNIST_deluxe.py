@@ -34,7 +34,7 @@ componentes = [5,10,15]
 
 # Input Reading
 a = np.loadtxt("dados_mnist/test_images.txt", usecols=range(args.n_test)) / 255
-if(args.d): print("Loaded: dados_mnist/test_images.txt "+str(a.shape))
+if(args.e): print("Loaded: dados_mnist/test_images.txt "+str(a.shape))
 
 # Output Writing
 r = open("output/classify_index_" + str(args.n_test) + ".txt", "w")
@@ -50,7 +50,7 @@ for ndig in ndig_treino:
         start = time.time()
         # Digitos a serem testados
         for digit in range(10):
-            if(args.d): print("Loaded: output/W_"+str(digit)+"_"+str(ndig)+"_"+str(p)+".txt"+str(a.shape))
+            if(args.e): print("Loaded: output/W_"+str(digit)+"_"+str(ndig)+"_"+str(p)+".txt"+str(a.shape))
 
             # Solving A - WH
             w = np.loadtxt("output/W_"+str(digit)+"_"+str(ndig)+"_"+str(p)+".txt")
@@ -65,17 +65,25 @@ for ndig in ndig_treino:
                     classification_err[j] = e_j
         elapsed_time = time.time() - start
         # Calculo da taxa de acertos
-        if(args.d): print("Loaded: dados_mnist/test_index.txt")
+        if(args.e): print("Loaded: dados_mnist/test_index.txt")
         index = np.loadtxt("dados_mnist/test_index.txt")
+        # Total de cada dígito
+        td = [0]*10     # total de de cada dígito no gabarito
+        cd = [0]*10     # total de cada dígito nas classificações corretas
         taxa = {"acerto": 0, "erro": 0}
         for c in range(args.n_test):
-            if (classification[c] == index[c]): taxa["acerto"] += 1
+            td[int(index[c])] += 1
+            if (classification[c] == index[c]):
+                taxa["acerto"] += 1
+                cd[int(classification[c])] += 1
             else:                               taxa["erro"]   += 1
         r.write(str(taxa))
         r.write("\nPrecisao de " + str(100*taxa["acerto"]/args.n_test) + "%")
+        for digit in range(10):
+            r.write("\n   d" + str(digit) +": Precisao de " + str(100*cd[digit]/td[digit]) + "%. (" + str(cd[digit]) + " corretos de" + str(td[digit]) + ")")
         r.write("\nTempo de Classificacao: " + str(elapsed_time) + "s\n")
 
         # Exporta dados da classificacao para cada digito
-        if(args.d):
+        if(args.e):
             t = open("output/C_" + str(ndig) + "_" + str(args.n_test) + "_" + str(p) + ".txt", "w")
             for i in classification: t.write(str(int(i))+"\n")
