@@ -5,7 +5,7 @@
 #     ndig_treino = 100, 1000, 4000
 #     componentes = 5,10,15
 # Dependencies: time, argparse, numpy, math, systems_qr.py
-# Usage: classify_MNIST_deluxe.py n_test
+# Usage: classify_MNIST_deluxe.py n_test --e
 # Positional arguments:
 #     n_test        numero de imagens a ser utilizada para teste
 # Optional arguments:

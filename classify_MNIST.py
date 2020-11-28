@@ -2,7 +2,7 @@
 # Description: classificacao de digitos manuscritos utilizando
 #              a database MNIST
 # Dependencies: time, argparse, numpy, math, systems_qr.py
-# Usage: classify_MNIST.py ndig_treino n_test P
+# Usage: classify_MNIST.py ndig_treino n_test P --e
 # Positional arguments:
 #     ndig_treino   numero de imagens usadas no treinamento
 #     n_test        numero de imagens a ser utilizada para teste
