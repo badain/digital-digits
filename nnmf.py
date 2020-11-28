@@ -67,7 +67,8 @@ def nao_negativa(A, p, convergencia):
     return [W, H, norma_erro]
 
 ########################################################################
-# Description: Validation
+# Description: System resolution based on Non-Negative Factorization
+# Usage: --v, --validation validation mode
 # Authors: Carlo Bellinati & Rafael Badain @ University of Sao Paulo
 ########################################################################
 def main():

@@ -112,7 +112,8 @@ def erro(W,H,A):
     return erro
 
 ########################################################################
-# Description: Validation
+# Description: System resolution based on QR Factoration Validation
+# Usage: --v, --validation validation mode
 # Authors: Carlo Bellinati & Rafael Badain @ University of Sao Paulo
 ########################################################################
 
@@ -187,6 +188,6 @@ def main():
     return
 
 parser = argparse.ArgumentParser(description='System resolution based on QR Factoration')
-parser.add_argument('--v', '--validationn', default=False, action='store_true', help='validation mode')
+parser.add_argument('--v', '--validation', default=False, action='store_true', help='validation mode')
 args = parser.parse_args()
 if (args.v): main()
