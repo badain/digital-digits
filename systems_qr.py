@@ -1,4 +1,5 @@
 from rot_givens import *
+import argparse
 ######################################################################
 # Description: single system solution wx = b based on QR Factorization
 # Usage: single_system(w, b)
@@ -114,7 +115,9 @@ def erro(W,H,A):
 # Description: Validation
 # Authors: Carlo Bellinati & Rafael Badain @ University of Sao Paulo
 ########################################################################
-def create_A_matrix(n, m):  # create the A matrix for examples c and d
+
+# generates A matrix for examples c and d
+def create_A_matrix(n, m):
     A = np.zeros((n,m))
     for j in range(m):
         for i in range(n):
@@ -128,12 +131,10 @@ def create_A_matrix(n, m):  # create the A matrix for examples c and d
 
 
 def main():
-    # TESTES:
-
+    # Output
     f = open("Relatório/testes_primeira_tarefa.txt", "w")
 
     # a) Single system Wx = b: n = m = 64; W = wa, b = ba
-
     wa = np.zeros((64,64))
     for i in range(64):
         for j in range(64):
@@ -150,7 +151,6 @@ def main():
     np.savetxt("Teste_A.txt", xa)
 
     # b) Single system Wx = b: n = 20, m = 17; W = wb, b = bb
-
     wb = np.zeros((20,17))
     bb = np.zeros((20,1))
     for i in range(20):
@@ -167,7 +167,6 @@ def main():
     np.savetxt("Teste_B.txt", xb)
 
     # c) Multiple systems WH = A; n = p = 63, m = 3, W = wc, A = Ac
-
     Ac = create_A_matrix(64, 3)
     Ac_copy = Ac.copy()
     wc_copy = wc.copy()
@@ -177,7 +176,6 @@ def main():
     np.savetxt("Teste_C.txt", hc)
 
     # d) Multiple systems WH = A; n = 20, p = 17; m = 3, W = wd, A = Ad
-
     Ad = create_A_matrix(20, 3)
     Ad_copy = Ad.copy()
     wd_copy = wd.copy()
@@ -188,6 +186,7 @@ def main():
 
     return
 
-teste = True
-if (teste):
-    main()
+parser = argparse.ArgumentParser(description='System resolution based on QR Factoration')
+parser.add_argument('--v', '--validationn', default=False, action='store_true', help='validation mode')
+args = parser.parse_args()
+if (args.v): main()
