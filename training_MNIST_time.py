@@ -3,7 +3,7 @@
 #              para classificacao de digitos manuscritos utilizando
 #              a database MNIST
 # Dependencies: time, argparse, fatorização_nao_negativa
-# Usage: training_MNIST.py ndig_treino p --t
+# Usage: training_MNIST_time.py ndig_treino p --t
 # Positional arguments:
 #     ndig_treino   numero de imagens a ser utilizada para fatoracao
 #     P             fator de componentes da decomposicao
