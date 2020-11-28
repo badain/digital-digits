@@ -3,44 +3,134 @@ Taxas de acerto para n_test: 10000
 ndig_treino: 100 e p: 5
 {'acerto': 8801, 'erro': 1199}
 Precisao de 88.01%
-Tempo de Classificacao: 5.546467542648315s
+   d0: Precisao de 97.34693877551021%. (954 corretos de980)
+   d1: Precisao de 99.55947136563877%. (1130 corretos de1135)
+   d2: Precisao de 84.78682170542636%. (875 corretos de1032)
+   d3: Precisao de 85.04950495049505%. (859 corretos de1010)
+   d4: Precisao de 80.24439918533605%. (788 corretos de982)
+   d5: Precisao de 83.07174887892377%. (741 corretos de892)
+   d6: Precisao de 93.0062630480167%. (891 corretos de958)
+   d7: Precisao de 88.42412451361868%. (909 corretos de1028)
+   d8: Precisao de 79.87679671457906%. (778 corretos de974)
+   d9: Precisao de 86.81863230921705%. (876 corretos de1009)
+Tempo de Classificacao: 26.58384919166565s
 
 ndig_treino: 100 e p: 10
 {'acerto': 9006, 'erro': 994}
 Precisao de 90.06%
-Tempo de Classificacao: 12.316756248474121s
+   d0: Precisao de 97.65306122448979%. (957 corretos de980)
+   d1: Precisao de 99.47136563876651%. (1129 corretos de1135)
+   d2: Precisao de 90.11627906976744%. (930 corretos de1032)
+   d3: Precisao de 86.13861386138613%. (870 corretos de1010)
+   d4: Precisao de 84.41955193482688%. (829 corretos de982)
+   d5: Precisao de 86.54708520179372%. (772 corretos de892)
+   d6: Precisao de 96.34655532359082%. (923 corretos de958)
+   d7: Precisao de 91.34241245136187%. (939 corretos de1028)
+   d8: Precisao de 79.26078028747433%. (772 corretos de974)
+   d9: Precisao de 87.71060455896928%. (885 corretos de1009)
+Tempo de Classificacao: 49.781728982925415s
 
 ndig_treino: 100 e p: 15
 {'acerto': 9095, 'erro': 905}
 Precisao de 90.95%
-Tempo de Classificacao: 20.884232997894287s
+   d0: Precisao de 97.85714285714286%. (959 corretos de980)
+   d1: Precisao de 99.47136563876651%. (1129 corretos de1135)
+   d2: Precisao de 90.01937984496124%. (929 corretos de1032)
+   d3: Precisao de 87.82178217821782%. (887 corretos de1010)
+   d4: Precisao de 87.16904276985743%. (856 corretos de982)
+   d5: Precisao de 84.30493273542601%. (752 corretos de892)
+   d6: Precisao de 95.51148225469728%. (915 corretos de958)
+   d7: Precisao de 94.26070038910505%. (969 corretos de1028)
+   d8: Precisao de 82.23819301848049%. (801 corretos de974)
+   d9: Precisao de 88.9990089197225%. (898 corretos de1009)
+Tempo de Classificacao: 78.29675769805908s
 
 ndig_treino: 1000 e p: 5
 {'acerto': 9079, 'erro': 921}
 Precisao de 90.79%
-Tempo de Classificacao: 6.000551700592041s
+   d0: Precisao de 97.55102040816327%. (956 corretos de980)
+   d1: Precisao de 99.20704845814979%. (1126 corretos de1135)
+   d2: Precisao de 86.9186046511628%. (897 corretos de1032)
+   d3: Precisao de 90.4950495049505%. (914 corretos de1010)
+   d4: Precisao de 86.55804480651732%. (850 corretos de982)
+   d5: Precisao de 86.32286995515695%. (770 corretos de892)
+   d6: Precisao de 96.03340292275574%. (920 corretos de958)
+   d7: Precisao de 89.49416342412451%. (920 corretos de1028)
+   d8: Precisao de 86.96098562628337%. (847 corretos de974)
+   d9: Precisao de 87.1159563924678%. (879 corretos de1009)
+Tempo de Classificacao: 26.84675645828247s
 
 ndig_treino: 1000 e p: 10
 {'acerto': 9291, 'erro': 709}
 Precisao de 92.91%
-Tempo de Classificacao: 12.923640966415405s
+   d0: Precisao de 98.6734693877551%. (967 corretos de980)
+   d1: Precisao de 99.55947136563877%. (1130 corretos de1135)
+   d2: Precisao de 90.79457364341086%. (937 corretos de1032)
+   d3: Precisao de 91.98019801980197%. (929 corretos de1010)
+   d4: Precisao de 92.9735234215886%. (913 corretos de982)
+   d5: Precisao de 89.57399103139014%. (799 corretos de892)
+   d6: Precisao de 95.92901878914405%. (919 corretos de958)
+   d7: Precisao de 90.85603112840467%. (934 corretos de1028)
+   d8: Precisao de 87.782340862423%. (855 corretos de974)
+   d9: Precisao de 89.99008919722498%. (908 corretos de1009)
+Tempo de Classificacao: 50.995636224746704s
 
 ndig_treino: 1000 e p: 15
 {'acerto': 9359, 'erro': 641}
 Precisao de 93.59%
-Tempo de Classificacao: 18.901272535324097s
+   d0: Precisao de 98.77551020408163%. (968 corretos de980)
+   d1: Precisao de 99.55947136563877%. (1130 corretos de1135)
+   d2: Precisao de 92.34496124031008%. (953 corretos de1032)
+   d3: Precisao de 92.07920792079207%. (930 corretos de1010)
+   d4: Precisao de 93.27902240325865%. (916 corretos de982)
+   d5: Precisao de 90.02242152466367%. (803 corretos de892)
+   d6: Precisao de 96.45093945720251%. (924 corretos de958)
+   d7: Precisao de 93.09338521400778%. (957 corretos de1028)
+   d8: Precisao de 87.37166324435319%. (851 corretos de974)
+   d9: Precisao de 91.87314172447968%. (927 corretos de1009)
+Tempo de Classificacao: 78.75142502784729s
 
 ndig_treino: 4000 e p: 5
 {'acerto': 9169, 'erro': 831}
 Precisao de 91.69%
-Tempo de Classificacao: 5.9160027503967285s
+   d0: Precisao de 97.65306122448979%. (957 corretos de980)
+   d1: Precisao de 99.38325991189427%. (1128 corretos de1135)
+   d2: Precisao de 89.92248062015504%. (928 corretos de1032)
+   d3: Precisao de 92.47524752475248%. (934 corretos de1010)
+   d4: Precisao de 88.4928716904277%. (869 corretos de982)
+   d5: Precisao de 88.00448430493273%. (785 corretos de892)
+   d6: Precisao de 96.76409185803757%. (927 corretos de958)
+   d7: Precisao de 88.81322957198444%. (913 corretos de1028)
+   d8: Precisao de 88.80903490759754%. (865 corretos de974)
+   d9: Precisao de 85.53022794846383%. (863 corretos de1009)
+Tempo de Classificacao: 27.293137788772583s
 
 ndig_treino: 4000 e p: 10
 {'acerto': 9349, 'erro': 651}
 Precisao de 93.49%
-Tempo de Classificacao: 11.353779077529907s
+   d0: Precisao de 98.87755102040816%. (969 corretos de980)
+   d1: Precisao de 99.38325991189427%. (1128 corretos de1135)
+   d2: Precisao de 91.66666666666667%. (946 corretos de1032)
+   d3: Precisao de 93.76237623762377%. (947 corretos de1010)
+   d4: Precisao de 92.56619144602851%. (909 corretos de982)
+   d5: Precisao de 90.02242152466367%. (803 corretos de892)
+   d6: Precisao de 96.13778705636743%. (921 corretos de958)
+   d7: Precisao de 91.34241245136187%. (939 corretos de1028)
+   d8: Precisao de 89.52772073921972%. (872 corretos de974)
+   d9: Precisao de 90.68384539147671%. (915 corretos de1009)
+Tempo de Classificacao: 52.44665241241455s
 
 ndig_treino: 4000 e p: 15
 {'acerto': 9392, 'erro': 608}
 Precisao de 93.92%
-Tempo de Classificacao: 18.772492170333862s
+   d0: Precisao de 98.77551020408163%. (968 corretos de980)
+   d1: Precisao de 99.38325991189427%. (1128 corretos de1135)
+   d2: Precisao de 92.63565891472868%. (956 corretos de1032)
+   d3: Precisao de 93.06930693069307%. (940 corretos de1010)
+   d4: Precisao de 93.48268839103869%. (918 corretos de982)
+   d5: Precisao de 90.35874439461884%. (806 corretos de892)
+   d6: Precisao de 97.18162839248434%. (931 corretos de958)
+   d7: Precisao de 90.6614785992218%. (932 corretos de1028)
+   d8: Precisao de 91.06776180698152%. (887 corretos de974)
+   d9: Precisao de 91.77403369672943%. (926 corretos de1009)
+Tempo de Classificacao: 79.18839931488037s
