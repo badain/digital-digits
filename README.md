@@ -49,6 +49,7 @@ Optional arguments:\
     --e, --export exporta os dados da classificacao de cada imagem em "output/C_ndig_treino_n_test_p.txt"\
 Post-Condition: armazena a taxa de precisao e o tempo do classificador em "output/classify_index_n_test.txt"
 
+## Bibliotecas
 ### nnmf.py
 Description: biblioteca de funcoes para implementacao da fatoracao nao negativa de matrizes\
 Dependencies: numpy, math, systems_qr.py
