@@ -1,5 +1,5 @@
 # digital-digits
-Classifica dígitos manuscritos utilizando fatoração QR\
+Classifica dígitos manuscritos utilizando *Non-Negative Matrix Factorization*, baseado na *MNIST Database*\
 Authors: Carlo Bellinati & Rafael Badain @ University of Sao Paulo
 
 ## training_MNIST.py
